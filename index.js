@@ -72,6 +72,10 @@ app.get('/', (req, res) => {
                 data = sortByDistanceFrom(data, parseFloat(req.query.lat), parseFloat(req.query.lon));
             }
 
+            if (req.query.onlyFirstResult === 'true') {
+                data = data[0];
+            }
+
             res.json(data);
         })
         .catch(err => {
