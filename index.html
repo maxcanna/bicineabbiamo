@@ -1,1 +1,54 @@
-bicineabbiamo
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>bicineabbiamo</title>
+    <meta name="description" content="bicineabbiamo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body style="font-family: 'Roboto', sans-serif; font-size: xx-large; text-align: center">
+<div id="content">Cerco di capire dove sei...</div>
+<script>
+    $(function () {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        $('#content').html('Conto le bici una ad una...');
+                        $.ajax({
+                                    url: 'https://tonicdev.io/maxcanna/bicineabbiamo/2.2.0?lat='
+                                    + position.coords.latitude +
+                                    '&lon='
+                                    + position.coords.longitude +
+                                    '&onlyAvailable=true&onlyFirstResult=true',
+                                })
+                                .done(function (data) {
+                                    console.log('Answer:', data);
+                                    $('#content').html(
+                                            'Ho trovato ' + data.bikes[0].count + ' ' + data.bikes[0].name.toLowerCase() +
+                                            '<br /> e ' + data.bikes[1].count + ' ' + data.bikes[1].name.toLowerCase() +
+                                            '<br />a <a href="https://maps.google.com/?q=' + data.latitude +
+                                            ',' + data.longitude + '" target="_blank" title="' + data.name + '">' +
+                                            Math.round(data.distance) + 'm da te</a>'
+                                    );
+                                })
+                                .fail(function () {
+                                    $('#content').html('Niente, non riesco a contarle bene');
+                                });
+                    },
+                    function (error) {
+                        $('#content').html('Eh ma se non mi dici dove sei!');
+                    },
+                    {
+                        enableHighAccuracy: true
+                    });
+        } else {
+            $('#content').html('Ma se tu non collabori!');
+        }
+    });
+</script>
+</body>
+</html>
+
