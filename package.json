@@ -1,0 +1,21 @@
+{
+  "name": "bicineabbiamo",
+  "version": "1.0.0",
+  "description": "API to get nearest BikeMi station info",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node_modules/.bin/jshint $(find . ! -path '*node_modules*' -name '*.js')",
+    "postinstall": "npm prune"
+  },
+  "author": "Massimiliano Cannarozzo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "request-promise": "^3.0.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.2"
+  }
+}
