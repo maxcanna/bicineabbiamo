@@ -2,7 +2,10 @@ const express = require('express')
     , request = require('request-promise')
     , app = express()
     , distance = require('gps-distance')
-    , _ = require('lodash');
+    , _ = require('lodash')
+    , cors = require('cors');
+
+app.use(cors({origin: true, methods: 'GET'}));
 
 const getData = () => {
     const options = {
