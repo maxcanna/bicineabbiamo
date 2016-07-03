@@ -1,2 +1,2 @@
 # bicineabbiamo
-[bicineabbiamo](https://maxcanna.github.io/bicineabbiamo/)
+[bicineabbiamo](https://bicineabbiamo.massi.ws)
