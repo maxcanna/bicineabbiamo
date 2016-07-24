@@ -1,0 +1,51 @@
+FORMAT: 1A
+HOST: https://tonicdev.io/maxcanna/bicineabbiamo/branches/master
+
+# bicineabbiamo
+
+Simple API to get BikeMi station informations.
+
+## Stations Collection [/{?lat,lon,onlyAvailable,onlyFirstResult}]
+
+### List Stations [GET]
+
+Get available bikes amount and types.
+
++ Parameters
+    + lat: `45.4899785` (float, optional) - Application package id
+    + lon: `9.2309602` (float, optional) - Output language
+    + onlyAvailable: `false` (boolean, optional)
+        + Default: false
+    + onlyFirstResult: `false` (boolean, optional)
+        + Default: false
+
++ Response 200 (application/json; charset=utf-8)
+
+        [
+            {
+                "name": "Duomo",
+                "latitude": 45.464683238626,
+                "longitude": 9.18879747390747,
+                "active": true,
+                "slotsnumber": 24,
+                "id": 1,
+                "emptyslotcount": 11,
+                "bikes": [
+                    {
+                        "count": 10,
+                        "id": 2,
+                        "name": "Biciclette"
+                    },
+                    {
+                        "count": 0,
+                        "id": 3,
+                        "name": "Biciclette elettriche"
+                    },
+                    {
+                        "count": 1,
+                        "id": 5,
+                        "name": "Biciclette per bambini"
+                    }
+                ]
+            }
+        ]
