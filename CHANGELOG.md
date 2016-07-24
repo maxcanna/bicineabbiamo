@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - API blueprint
 - API test
 - Documentation
+- Heroku deploy
 
 ## [2.2.0] - 2016-07-01
 ### Added
