@@ -19,6 +19,7 @@
     "request-promise": "^3.0.0"
   },
   "devDependencies": {
+    "dredd": "^1.4.0",
     "jshint": "^2.9.2"
   }
 }
