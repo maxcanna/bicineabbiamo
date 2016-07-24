@@ -1,0 +1,8 @@
+{
+  "name": "bicineabbiamo",
+  "website": "https://github.com/maxcanna/bicineabbiamo",
+  "repository": "https://github.com/maxcanna/bicineabbiamo",
+  "description": "Simple API to get BikeMi station informations",
+  "image": "heroku/nodejs",
+  "success_url": "/"
+}
