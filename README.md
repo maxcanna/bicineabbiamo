@@ -2,3 +2,7 @@
 [Open](https://bicineabbiamo.massi.ws)
 
 ![](https://raw.githubusercontent.com/maxcanna/bicineabbiamo/master/images/web_hi_res_512.png)
+
+### Documentation
+
+[Apiary](http://docs.bicineabbiamo.apiary.io/)
