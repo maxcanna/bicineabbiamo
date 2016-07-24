@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Favicon
 - Home screen support
 - theme color
+- API blueprint
+- API test
+- Documentation
 
 ## [2.2.0] - 2016-07-01
 ### Added
