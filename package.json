@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node_modules/.bin/jshint $(find . ! -path '*node_modules*' -name '*.js')",
+    "test": "./test.sh",
     "postinstall": "npm prune"
   },
   "author": "Massimiliano Cannarozzo",
