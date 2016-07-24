@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0] - 2016-07-24
+### Added
+- Favicon
+- Home screen support
+- theme color
+
 ## [2.2.0] - 2016-07-01
 ### Added
 - CORS support
