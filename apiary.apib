@@ -12,11 +12,11 @@ Simple API to get BikeMi station informations.
 Get available bikes amount and types.
 
 + Parameters
-    + lat: `45.4899785` (float, optional) - Application package id
-    + lon: `9.2309602` (float, optional) - Output language
-    + onlyAvailable: `false` (boolean, optional)
+    + lat: `45.4899785` (float, optional) - Latitude to search around and sort
+    + lon: `9.2309602` (float, optional) - Longitude to search around and sort
+    + onlyAvailable: `false` (boolean, optional) - Return only stations with available bikes
         + Default: false
-    + onlyFirstResult: `false` (boolean, optional)
+    + onlyFirstResult: `false` (boolean, optional) - Return only the first result
         + Default: false
 
 + Response 200 (application/json; charset=utf-8)
