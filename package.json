@@ -16,7 +16,8 @@
     "express": "^4.14.0",
     "gps-distance": "0.0.4",
     "lodash": "^4.13.1",
-    "request-promise": "^3.0.0"
+    "request": "^2.74.0",
+    "request-promise": "^4.0.0"
   },
   "devDependencies": {
     "dredd": "^1.4.0",
