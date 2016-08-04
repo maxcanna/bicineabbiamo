@@ -13,8 +13,9 @@ You can easily create an Heroku application:
 Or manually:
 
 `npm i --production`
+
 `npm start`
 
-### Documentation
+## Documentation
 
 Available on [Apiary](http://docs.bicineabbiamo.apiary.io/)
