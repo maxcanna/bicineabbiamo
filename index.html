@@ -12,6 +12,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <!-- For Chrome for Android: -->
@@ -28,14 +29,22 @@
     <link rel="apple-touch-icon-precomposed" sizes="48x48" href="images/touch/launcher-icon-1x.png">
 </head>
 <body style="font-family: 'Roboto', sans-serif; font-size: xx-large; text-align: center">
+<span id="refreshButton" class="zmdi-hc-stack zmdi-hc-lg" style="position: fixed; right: 0; top: 0;">
+    <i id="refreshIcon" class="zmdi zmdi-refresh zmdi-hc-stack-1x" style="font-size: 40%"></i>
+    <i class="zmdi zmdi-circle-o zmdi-hc-stack-1x" style="font-size: 65%"></i>
+</span>
 <img src="images/touch/launcher-icon-4x.png" width="192" height="192">
-<div id="content">Cerco di capire dove sei...</div>
+<div id="content"></div>
 <script>
-    $(function () {
+    var content = $('#content');
+    var refreshIcon = $('#refreshIcon');
+    var loadData = function () {
+        content.html('Cerco di capire dove sei...');
+        refreshIcon.addClass('zmdi-hc-spin');
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                     function (position) {
-                        $('#content').html('Conto le bici una ad una...');
+                        content.html('Conto le bici una ad una...');
                         $.ajax({
                                     url: 'https://tonicdev.io/maxcanna/bicineabbiamo/2.2.0?lat='
                                     + position.coords.latitude +
@@ -44,28 +53,37 @@
                                     '&onlyAvailable=true&onlyFirstResult=true',
                                 })
                                 .done(function (data) {
-                                    console.log('Answer:', data);
-                                    $('#content').html(
+                                    content.html(
                                             'Ho trovato ' + data.bikes[0].count + ' ' + data.bikes[0].name.toLowerCase() +
                                             '<br /> e ' + data.bikes[1].count + ' ' + data.bikes[1].name.toLowerCase() +
                                             '<br />a <a href="https://maps.google.com/?q=' + data.latitude +
                                             ',' + data.longitude + '" target="_blank" title="' + data.name + '">' +
                                             Math.round(data.distance) + 'm da te</a>'
                                     );
+                                    refreshIcon.removeClass('zmdi-hc-spin');
                                 })
                                 .fail(function () {
-                                    $('#content').html('Niente, non riesco a contarle bene');
+                                    content.html('Niente, non riesco a contarle bene');
+                                    refreshIcon.removeClass('zmdi-hc-spin');
                                 });
                     },
                     function (error) {
                         console.error('Error:', error);
-                        $('#content').html('Eh ma se non mi dici dove sei!');
+                        content.html('Eh ma se non mi dici dove sei!');
+                        refreshIcon.removeClass('zmdi-hc-spin');
                     },
                     {
                         enableHighAccuracy: true
                     });
         } else {
-            $('#content').html('Ma se tu non collabori!');
+            content.html('Ma se tu non collabori!');
+            refreshIcon.removeClass('zmdi-hc-spin');
+        }
+    };
+    $(loadData());
+    $('#refreshButton').click(function() {
+        if(!refreshIcon.hasClass('zmdi-hc-spin')){
+            loadData();
         }
     });
 </script>
