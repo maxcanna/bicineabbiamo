@@ -60,6 +60,13 @@
                                             ',' + data.longitude + '" target="_blank" title="' + data.name + '">' +
                                             Math.round(data.distance) + 'm da te</a>'
                                     );
+
+                                    content.append('<br><img src="http://maps.googleapis.com/maps/api/staticmap?' +
+                                            'autoscale=true&size=640x640&maptype=roadmap&format=png&scale=2' +
+                                            '&markers=size:small%7Ccolor:green%7C' + data.latitude + ',' + data.longitude +
+                                            '&markers=size:small%7Ccolor:red%7C' + position.coords.latitude + ',+' + position.coords.longitude +
+                                            '" style="width: 100%; margin-top: 20px">');
+
                                     refreshIcon.removeClass('zmdi-hc-spin');
                                 })
                                 .fail(function () {
