@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "dredd": "^1.4.0",
-    "jshint": "^2.9.2"
+    "eslint": "^3.4.0"
   }
 }

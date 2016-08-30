@@ -15,11 +15,11 @@ const getData = () => {
             'Version': '2.0',
             'Action': 'GetStations',
             'Parameters': {
-                'Culture': 'it-IT'
+                'Culture': 'it-IT',
             },
-            'Hash': '8275DD31B51C959DFF7B8A66B336F454'
+            'Hash': '8275DD31B51C959DFF7B8A66B336F454',
         },
-        json: true
+        json: true,
     };
 
     return request(options);
@@ -87,6 +87,6 @@ app.get('/', (req, res) => {
         });
 });
 
-app.listen((process.env['PORT'] || 3000), () => {
+app.listen((process.env.PORT || 3000), () => {
     console.log('bicineabbiamo listening on port 3000!');
 });
