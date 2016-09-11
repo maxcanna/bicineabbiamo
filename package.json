@@ -24,7 +24,7 @@
     "request-promise": "^4.0.0"
   },
   "devDependencies": {
-    "dredd": "^1.4.0",
+    "dredd": "^2.0.0",
     "eslint": "^3.4.0"
   }
 }
