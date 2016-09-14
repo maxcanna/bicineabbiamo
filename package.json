@@ -13,8 +13,21 @@
     "test": "./test.sh",
     "postinstall": "npm prune"
   },
-  "author": "Massimiliano Cannarozzo",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxcanna/bicineabbiamo.git"
+  },
+  "keywords": [
+    "bici",
+    "atm",
+    "milano"
+  ],
+  "author": "Massimiliano Cannarozzo <massi@massi.ws>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/maxcanna/bicineabbiamo/issues"
+  },
+  "homepage": "https://github.com/maxcanna/bicineabbiamo#readme",
   "dependencies": {
     "cors": "^2.7.1",
     "express": "^4.14.0",
