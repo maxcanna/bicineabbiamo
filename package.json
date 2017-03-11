@@ -4,7 +4,7 @@
     "npm": "3.8.7"
   },
   "name": "bicineabbiamo",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "API to get nearest BikeMi station info",
   "private": true,
   "main": "index.js",
