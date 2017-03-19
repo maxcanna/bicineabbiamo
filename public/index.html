@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="48x48" href="images/touch/launcher-icon-1x.png">
 </head>
 <body style="font-family: 'Roboto', sans-serif; font-size: xx-large; text-align: center">
-<span id="refreshButton" class="zmdi-hc-stack zmdi-hc-lg" style="position: fixed; right: 0; top: 0;">
+<span id="refreshButton" class="zmdi-hc-stack zmdi-hc-lg" style="display:none; position: fixed; right: 0; top: 0;">
     <i id="refreshIcon" class="zmdi zmdi-refresh zmdi-hc-stack-1x" style="font-size: 40%"></i>
     <i class="zmdi zmdi-circle-o zmdi-hc-stack-1x" style="font-size: 65%"></i>
 </span>
@@ -89,11 +89,13 @@
         }
     };
     $(loadData());
-    $('#refreshButton').click(function() {
-        if(!refreshIcon.hasClass('zmdi-hc-spin')){
-            loadData();
-        }
-    });
+    $('#refreshButton')
+            .show()
+            .click(() => {
+                if (!refreshIcon.hasClass('zmdi-hc-spin')) {
+                    loadData();
+                }
+            });
 </script>
 </body>
 </html>
