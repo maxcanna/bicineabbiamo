@@ -41,44 +41,39 @@
     var refreshIcon = $('#refreshIcon');
     var map = $('#map');
 
-    var loadData = function () {
+    var loadData = () => {
         content.html('Cerco di capire dove sei...');
         refreshIcon.addClass('zmdi-hc-spin');
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
-                    function (position) {
+                    position => {
                         content.html('Conto le bici una ad una...');
                         $.ajax({
-                                    url: '/api?lat='
-                                    + position.coords.latitude +
-                                    '&lon='
-                                    + position.coords.longitude +
-                                    '&onlyAvailable=true&onlyFirstResult=true',
-                                })
-                                .done(function (data) {
-                                    content.html(
-                                            'Ho trovato ' + data.bikes[0].count + ' ' + data.bikes[0].name.toLowerCase() +
-                                            '<br /> e ' + data.bikes[1].count + ' ' + data.bikes[1].name.toLowerCase() +
-                                            '<br />a <a href="https://maps.google.com/?q=' + data.latitude +
-                                            ',' + data.longitude + '" target="_blank" title="' + data.name + '">' +
-                                            Math.round(data.distance) + 'm da te</a>'
-                                    );
+                            url: `/api?lat=${position.coords.latitude}&lon=${position.coords.longitude}&onlyAvailable=true&onlyFirstResult=true`,
+                        })
+                                .done(data => {
+                                    const bikes = data.bikes.map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
 
-                                    content.append('<br><img src="https://maps.googleapis.com/maps/api/staticmap?' +
-                                            'autoscale=true&size=640x640&maptype=roadmap&format=png&scale=2' +
-                                            '&markers=size:small%7Ccolor:green%7C' + data.latitude + ',' + data.longitude +
-                                            '&markers=size:small%7Ccolor:red%7C' + position.coords.latitude + ',+' + position.coords.longitude +
-                                            '&key=AIzaSyDUTayO2Pidi3AZlyGa4edL7SHJbryTvqA' +
-                                            '" style="width: 320px; margin-top: 20px">');
+                                    content.html(`Ho trovato ${bikes.join(' e <br />')} a ` +
+                                            `<a href="https://maps.google.com/?q=${data.latitude},${data.longitude} " ` +
+                                            `target="_blank" rel="no_opener" title="${data.name}">` +
+                                            `${Math.round(data.distance)}m da te</a>`);
+
+                                    map.html(`<img src="https://maps.googleapis.com/maps/api/staticmap?` +
+                                            `autoscale=true&size=640x640&maptype=roadmap&format=png&scale=2` +
+                                            `&markers=size:small%7Ccolor:green%7C${data.latitude},${data.longitude}` +
+                                            `&markers=size:small%7Ccolor:red%7C${position.coords.latitude},${position.coords.longitude}` +
+                                            `&key=AIzaSyDUTayO2Pidi3AZlyGa4edL7SHJbryTvqA" ` +
+                                            `style="width: 320px; margin-top: 20px" title="mappa" alt="mappa">`);
 
                                     refreshIcon.removeClass('zmdi-hc-spin');
                                 })
-                                .fail(function () {
+                                .fail(() => {
                                     content.html('Niente, non riesco a contarle bene');
                                     refreshIcon.removeClass('zmdi-hc-spin');
                                 });
                     },
-                    function (error) {
+                    error => {
                         console.error('Error:', error);
                         content.html('Eh ma se non mi dici dove sei!');
                         refreshIcon.removeClass('zmdi-hc-spin');
