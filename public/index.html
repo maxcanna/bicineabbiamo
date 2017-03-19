@@ -54,7 +54,7 @@
                                 .done(data => {
                                     const bikes = data.bikes.map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
 
-                                    content.html(`Ho trovato ${bikes.join(' e <br />')} a ` +
+                                    content.html(`Ho trovato ${bikes.join(' e <br />')}<br /> a ` +
                                             `<a href="https://maps.google.com/?q=${data.latitude},${data.longitude} " ` +
                                             `target="_blank" rel="no_opener" title="${data.name}">` +
                                             `${Math.round(data.distance)}m da te</a>`);
