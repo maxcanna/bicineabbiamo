@@ -40,7 +40,7 @@
     "request-promise": "^4.0.0"
   },
   "devDependencies": {
-    "dredd": "^2.0.0",
+    "dredd": "^3.2.0",
     "eslint": "^3.4.0",
     "nodemon": "^1.11.0"
   }
