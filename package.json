@@ -33,9 +33,9 @@
   "homepage": "https://github.com/maxcanna/bicineabbiamo#readme",
   "dependencies": {
     "cors": "^2.7.1",
-    "express": "^4.14.0",
+    "express": "^4.15.2",
     "gps-distance": "0.0.4",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.4",
     "request": "^2.74.0",
     "request-promise": "^4.0.0"
   },
