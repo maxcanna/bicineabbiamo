@@ -1,5 +1,6 @@
 {
   "name": "bicineabbiamo",
+  "short_name": "bicineabbiamo",
   "lang": "it-IT",
   "icons": [
     {
@@ -35,5 +36,7 @@
   ],
   "start_url": "index.html",
   "display": "standalone",
+  "theme_color": "#f07800",
+  "background_color": "#ffffff",
   "orientation": "portrait"
 }

@@ -11,7 +11,6 @@
     <!-- For Safari for iOS: -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
@@ -29,53 +28,53 @@
     <link rel="apple-touch-icon-precomposed" sizes="48x48" href="images/touch/launcher-icon-1x.png">
 </head>
 <body style="font-family: 'Roboto', sans-serif; font-size: xx-large; text-align: center">
-<span id="refreshButton" class="zmdi-hc-stack zmdi-hc-lg" style="position: fixed; right: 0; top: 0;">
+<span id="refreshButton" class="zmdi-hc-stack zmdi-hc-lg" style="display:none; position: fixed; right: 0; top: 0;">
     <i id="refreshIcon" class="zmdi zmdi-refresh zmdi-hc-stack-1x" style="font-size: 40%"></i>
     <i class="zmdi zmdi-circle-o zmdi-hc-stack-1x" style="font-size: 65%"></i>
 </span>
-<img src="images/touch/launcher-icon-4x.png" width="96" height="96">
-<div id="content"></div>
+<img src="images/touch/launcher-icon-4x.png" title="logo" alt="logo" width="96" height="96">
+<div id="content">È necessario abilitare JavaScript ed avere una connessione ad internet</div>
+<div id="map"></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
     var content = $('#content');
     var refreshIcon = $('#refreshIcon');
-    var loadData = function () {
+    var map = $('#map');
+
+    var loadData = () => {
         content.html('Cerco di capire dove sei...');
         refreshIcon.addClass('zmdi-hc-spin');
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
-                    function (position) {
+                    position => {
                         content.html('Conto le bici una ad una...');
                         $.ajax({
-                                    url: '/api?lat='
-                                    + position.coords.latitude +
-                                    '&lon='
-                                    + position.coords.longitude +
-                                    '&onlyAvailable=true&onlyFirstResult=true',
-                                })
-                                .done(function (data) {
-                                    content.html(
-                                            'Ho trovato ' + data.bikes[0].count + ' ' + data.bikes[0].name.toLowerCase() +
-                                            '<br /> e ' + data.bikes[1].count + ' ' + data.bikes[1].name.toLowerCase() +
-                                            '<br />a <a href="https://maps.google.com/?q=' + data.latitude +
-                                            ',' + data.longitude + '" target="_blank" title="' + data.name + '">' +
-                                            Math.round(data.distance) + 'm da te</a>'
-                                    );
+                            url: `/api?lat=${position.coords.latitude}&lon=${position.coords.longitude}&onlyAvailable=true&onlyFirstResult=true`,
+                        })
+                                .done(data => {
+                                    const bikes = data.bikes.map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
 
-                                    content.append('<br><img src="https://maps.googleapis.com/maps/api/staticmap?' +
-                                            'autoscale=true&size=640x640&maptype=roadmap&format=png&scale=2' +
-                                            '&markers=size:small%7Ccolor:green%7C' + data.latitude + ',' + data.longitude +
-                                            '&markers=size:small%7Ccolor:red%7C' + position.coords.latitude + ',+' + position.coords.longitude +
-                                            '&key=AIzaSyDUTayO2Pidi3AZlyGa4edL7SHJbryTvqA' +
-                                            '" style="width: 320px; margin-top: 20px">');
+                                    content.html(`Ho trovato ${bikes.join(' e <br />')} a ` +
+                                            `<a href="https://maps.google.com/?q=${data.latitude},${data.longitude} " ` +
+                                            `target="_blank" rel="no_opener" title="${data.name}">` +
+                                            `${Math.round(data.distance)}m da te</a>`);
+
+                                    map.html(`<img src="https://maps.googleapis.com/maps/api/staticmap?` +
+                                            `autoscale=true&size=640x640&maptype=roadmap&format=png&scale=2` +
+                                            `&markers=size:small%7Ccolor:green%7C${data.latitude},${data.longitude}` +
+                                            `&markers=size:small%7Ccolor:red%7C${position.coords.latitude},${position.coords.longitude}` +
+                                            `&key=AIzaSyDUTayO2Pidi3AZlyGa4edL7SHJbryTvqA" ` +
+                                            `onError="this.onerror='';this.style.visibility='hidden';" ` +
+                                            `style="width: 320px; margin-top: 20px" title="mappa" alt="mappa">`);
 
                                     refreshIcon.removeClass('zmdi-hc-spin');
                                 })
-                                .fail(function () {
+                                .fail(() => {
                                     content.html('Niente, non riesco a contarle bene');
                                     refreshIcon.removeClass('zmdi-hc-spin');
                                 });
                     },
-                    function (error) {
+                    error => {
                         console.error('Error:', error);
                         content.html('Eh ma se non mi dici dove sei!');
                         refreshIcon.removeClass('zmdi-hc-spin');
@@ -89,11 +88,16 @@
         }
     };
     $(loadData());
-    $('#refreshButton').click(function() {
-        if(!refreshIcon.hasClass('zmdi-hc-spin')){
-            loadData();
-        }
-    });
+    $('#refreshButton')
+            .show()
+            .click(() => {
+                if (!refreshIcon.hasClass('zmdi-hc-spin')) {
+                    loadData();
+                }
+            });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+    }
 </script>
 </body>
 </html>
