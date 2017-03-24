@@ -19,11 +19,15 @@ You've several way to get bicineabbiamo running:
 
   * Locally: `docker run -d -p 80:3000 maxcanna/bicineabbiamo:latest`.
 
+* You can use now:
+
+  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/bicineabbiamo)
+
 * Or manually:
 
-  `npm i --production`
+  * `npm i --production`
 
-  `npm start`
+  * `npm start`
 
   bicineabbiamo will be available on port `3000`.
 
