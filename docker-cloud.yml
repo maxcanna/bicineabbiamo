@@ -1,9 +1,0 @@
-bicineabbiamo:
-  autoredeploy: true
-  environment:
-    - PORT=80
-  image: 'maxcanna/bicineabbiamo:latest'
-  ports:
-    - '80:80'
-  restart: always
-
