@@ -55,7 +55,7 @@
                                     const bikes = data.bikes.map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
 
                                     content.html(`Ho trovato ${bikes.join(' e <br />')}<br /> a ` +
-                                            `<a href="https://maps.google.com/?q=${data.latitude},${data.longitude} " ` +
+                                            `<a href="https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=${data.latitude},${data.longitude} " ` +
                                             `target="_blank" rel="no_opener" title="${data.name}">` +
                                             `${Math.round(data.distance)}m da te</a>`);
 
