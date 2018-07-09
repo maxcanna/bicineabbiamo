@@ -1,10 +1,12 @@
-FROM node:alpine
-MAINTAINER Massimiliano Cannarozzo <maxcanna@gmail.com>
-
-EXPOSE 3000
+FROM node:alpine as builder
 ADD ./ /var/www/bicineabbiamo/
-RUN cd /var/www/bicineabbiamo/ && npm i --production
-
 WORKDIR /var/www/bicineabbiamo
+RUN yarn --production --ignore-engines
 
-CMD ["node", "index.js"]
+FROM node:alpine
+LABEL mantainer Massimiliano Cannarozzo <maxcanna@gmail.com>
+WORKDIR /var/www/bicineabbiamo
+COPY --from=builder /var/www/bicineabbiamo .
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["yarn", "start"]
