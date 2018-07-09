@@ -1,5 +1,6 @@
 const express = require('express')
     , routes = require('./routes')
+    , { env: { PORT: port = 3000 } } = process
     , app = express();
 
 app.use(routes);
@@ -8,8 +9,6 @@ app.disable('x-powered-by');
 app.enable('trust proxy');
 app.use(require('compression')());
 app.use(require('morgan')('combined'));
-app.set('port', process.env.PORT || 3000);
+app.set('port', port);
 
-app.listen(app.get('port'), () => {
-    console.log('bicineabbiamo listening on port ' + app.get('port'));
-});
+app.listen(app.get('port'), () => console.log(`bicineabbiamo listening on port ${app.get('port')}`));

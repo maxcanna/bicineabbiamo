@@ -5,31 +5,30 @@ const router = require('express').Router()
     , bicineabbiamo = require('./bicineabbiamo')
     , cors = require('cors');
 
-router.use(cors({origin: true, methods: 'GET'}));
+router.use(cors({ origin: true, methods: 'GET' }));
 
-router.get('/api', (req, res) => {
-    var options = {};
+router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult } }, res) => {
+    const options = {};
 
-    if (req.query.onlyAvailable === 'true') {
-        options.onlyAvailable = req.query.onlyAvailable;
+    if (onlyAvailable === 'true') {
+        options.onlyAvailable = true;
     }
 
-    if (req.query.lat > 0 && req.query.lon > 0) {
+    if (lat > 0 && lon > 0) {
         options.sortByDistanceFrom = {
-            latitude: parseFloat(req.query.lat),
-            longitude: parseFloat(req.query.lon),
+            latitude: parseFloat(lat),
+            longitude: parseFloat(lon),
         };
+    }
+
+    if (onlyFirstResult === 'true') {
+        options.onlyFirstResult = true;
     }
 
     bicineabbiamo.getData(options, (err, data) => {
         if (err) {
             console.error(err);
-            res.send(err);
-            return;
-        }
-
-        if (req.query.onlyFirstResult === 'true') {
-            data = data[0];
+            return res.send(err);
         }
 
         res.json(data);
