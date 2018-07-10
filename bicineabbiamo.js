@@ -52,6 +52,8 @@ const sortByDistance = (data, { latitude, longitude }) => _.sortBy(data.map(item
 
 const getOnlyWithBikesAvailable = data => _.filter(data, item => _.sumBy(item.bikes, 'count') > 0);
 
+const getOnlyWithParkingAvailable = data => _.filter(data, item => item.emptyslotcount > 0);
+
 class bicineabbiamo {
 
     static getData({ onlyAvailable, onlyWithParking, sortByDistanceFrom, onlyFirstResult }, callback) {
@@ -61,6 +63,9 @@ class bicineabbiamo {
 
                 if (onlyAvailable) {
                     data = getOnlyWithBikesAvailable(data);
+                }
+                if (onlyWithParking) {
+                    data = getOnlyWithParkingAvailable(data);
                 }
                 if (sortByDistanceFrom) {
                     data = sortByDistance(data, sortByDistanceFrom);
