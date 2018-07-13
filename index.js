@@ -1,9 +1,9 @@
 const express = require('express')
-    , routes = require('./routes')
+    , api = require('./routes_api')
     , { env: { PORT: port = 3000 } } = process
     , app = express();
 
-app.use(routes);
+app.use('/api', api);
 app.use(express.static(__dirname + '/public'));
 app.disable('x-powered-by');
 app.enable('trust proxy');
