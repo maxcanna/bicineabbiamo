@@ -1,0 +1,17 @@
+.git/
+.idea/
+node_modules/
+app.json
+.dockerignore
+.codeclimate.yml
+.gitignore
+.eslintignore
+.eslintrc
+CHANGELOG.md
+Dockerfile
+LICENSE
+README.md
+apiary.apib
+dredd.yml
+test.sh
+Procfile

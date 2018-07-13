@@ -1,20 +1,19 @@
 {
   "engines": {
-      "node": "8.5.0",
-      "yarn": "1.0.1",
-      "npm": "5.3.0"
+    "node": "10.6.0",
+    "yarn": "1.7.0"
   },
   "name": "bicineabbiamo",
-  "version": "2.3.0",
-  "description": "API to get nearest BikeMi station info",
+  "version": "2.3.1",
+  "description": "API to get BikeMi stations info",
   "private": true,
-  "main": "index.js",
+  "main": "bicineabbiamo.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node_modules/.bin/nodemon index.js",
-    "test": "npm run lint && npm run test-ci",
+    "dev": "nodemon index.js",
+    "test": "yarn lint && yarn test-ci",
     "test-ci": "./test.sh",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,8 @@
   "keywords": [
     "bici",
     "atm",
-    "milano"
+    "milano",
+    "bikemi"
   ],
   "author": "Massimiliano Cannarozzo <massi@massi.ws>",
   "license": "GPL-3.0",
@@ -32,18 +32,18 @@
   },
   "homepage": "https://github.com/maxcanna/bicineabbiamo#readme",
   "dependencies": {
-    "compression": "^1.6.0",
-    "cors": "^2.7.1",
-    "express": "^4.15.2",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
     "gps-distance": "0.0.4",
-    "lodash": "^4.17.4",
-    "morgan": "^1.8.0",
-    "request": "^2.74.0",
-    "request-promise": "^4.0.0"
+    "lodash": "^4.17.10",
+    "morgan": "^1.9.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "dredd": "^3.2.0",
-    "eslint": "^3.4.0",
-    "nodemon": "^1.11.0"
+    "dredd": "^5.1.11",
+    "eslint": "^5.1.0",
+    "nodemon": "^1.17.5"
   }
 }
