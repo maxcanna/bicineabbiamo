@@ -25,6 +25,13 @@
     "milano",
     "bikemi"
   ],
+  "now": {
+    "name": "bicineabbiamo",
+    "alias": "bicineabbiamo.now.sh",
+    "regions": [
+      "sfo1"
+    ]
+  },
   "author": "Massimiliano Cannarozzo <massi@massi.ws>",
   "license": "GPL-3.0",
   "bugs": {
