@@ -2,10 +2,7 @@
  * Created by massimilianocannarozzo on 11/03/17.
  */
 const router = require('express').Router()
-    , bicineabbiamo = require('./bicineabbiamo')
-    , cors = require('cors');
-
-router.use(cors({ origin: true, methods: 'GET' }));
+    , bicineabbiamo = require('./bicineabbiamo');
 
 router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult } }, res) => {
     const options = {};
