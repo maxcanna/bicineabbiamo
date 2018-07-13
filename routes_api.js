@@ -4,7 +4,7 @@
 const router = require('express').Router()
     , bicineabbiamo = require('./bicineabbiamo');
 
-router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWithParking } }, res) => {
+router.get('/', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWithParking } }, res) => {
     const options = {
         onlyAvailable: onlyAvailable === 'true',
         onlyFirstResult: onlyFirstResult === 'true',
