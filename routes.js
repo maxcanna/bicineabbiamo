@@ -18,14 +18,9 @@ router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWit
         };
     }
 
-    bicineabbiamo.getData(options, (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.send(err);
-        }
-
-        res.json(data);
-    });
+    bicineabbiamo.getData(options)
+        .then(data => res.json(data))
+        .catch(err => console.error(err) || res.send(err));
 });
 
 module.exports = router;
