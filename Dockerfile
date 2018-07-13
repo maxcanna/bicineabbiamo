@@ -10,5 +10,6 @@ LABEL mantainer Massimiliano Cannarozzo <maxcanna@gmail.com>
 WORKDIR /var/www/bicineabbiamo
 COPY --from=builder /var/www/bicineabbiamo .
 ENV NODE_ENV=production
-EXPOSE 3000
+ENV PORT=80
+EXPOSE 80
 CMD ["yarn", "start"]
