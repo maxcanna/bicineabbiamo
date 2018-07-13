@@ -32,6 +32,8 @@
   },
   "homepage": "https://github.com/maxcanna/bicineabbiamo#readme",
   "dependencies": {
+    "@google/maps": "^0.5.4",
+    "actions-on-google": "^2.2.0",
     "compression": "^1.7.2",
     "express": "^4.16.3",
     "gps-distance": "0.0.4",
