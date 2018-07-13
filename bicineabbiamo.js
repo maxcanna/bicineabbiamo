@@ -55,8 +55,7 @@ const getOnlyWithBikesAvailable = data => _.filter(data, item => _.sumBy(item.bi
 const getOnlyWithParkingAvailable = data => _.filter(data, item => item.emptyslotcount > 0);
 
 class bicineabbiamo {
-
-    static getData({ onlyAvailable, onlyWithParking, sortByDistanceFrom, onlyFirstResult }, callback) {
+    static getData({ onlyAvailable, onlyWithParking, sortByDistanceFrom, onlyFirstResult }) {
         return request()
             .then(body => {
                 let data = cleanData(JSON.parse(body.trim()));
@@ -73,10 +72,8 @@ class bicineabbiamo {
                 if (onlyFirstResult) {
                     [data] = data;
                 }
-
-                callback(null, data);
+                return data;
             })
-            .catch(callback);
     }
 }
 

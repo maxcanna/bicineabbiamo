@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.0] - 2018-07-13
+### Changed
+- Use Promise
+
 ## [2.3.1] - 2018-07-09
 ### Changed
 - Code refactor

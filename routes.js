@@ -2,17 +2,14 @@
  * Created by massimilianocannarozzo on 11/03/17.
  */
 const router = require('express').Router()
-    , bicineabbiamo = require('./bicineabbiamo')
-    , cors = require('cors');
+    , bicineabbiamo = require('./bicineabbiamo');
 
-router.use(cors({ origin: true, methods: 'GET' }));
-
-router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult } }, res) => {
-    const options = {};
-
-    if (onlyAvailable === 'true') {
-        options.onlyAvailable = true;
-    }
+router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWithParking } }, res) => {
+    const options = {
+        onlyAvailable: onlyAvailable === 'true',
+        onlyFirstResult: onlyFirstResult === 'true',
+        onlyWithParking: onlyWithParking === 'true',
+    };
 
     if (lat > 0 && lon > 0) {
         options.sortByDistanceFrom = {
@@ -21,18 +18,9 @@ router.get('/api', ({ query: { onlyAvailable, lat, lon, onlyFirstResult } }, res
         };
     }
 
-    if (onlyFirstResult === 'true') {
-        options.onlyFirstResult = true;
-    }
-
-    bicineabbiamo.getData(options, (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.send(err);
-        }
-
-        res.json(data);
-    });
+    bicineabbiamo.getData(options)
+        .then(data => res.json(data))
+        .catch(err => console.error(err) || res.send(err));
 });
 
 module.exports = router;
