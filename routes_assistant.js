@@ -1,6 +1,7 @@
 const router = require('express').Router()
     , bodyParser = require('body-parser').json()
     , bicineabbiamo = require('../bicineabbiamo')
+    , { pathOr } = require('ramda')
     , { env: { NODE_ENV = 'development', MAPS_API_KEY: mapApiKey } } = process
     , development = NODE_ENV === 'development';
 const {
@@ -20,6 +21,8 @@ const googleMapsClient = require('@google/maps').createClient({
 
 const REQUEST_TYPE_BIKES = 'REQUEST_TYPE_BIKES';
 const REQUEST_TYPE_PARKING = 'REQUEST_TYPE_PARKING';
+const DEFAULT_LATITUDE = 45.4642107;
+const DEFAULT_LONGITUDE = 9.1900141;
 
 const isBikesRequest = requestType => requestType === REQUEST_TYPE_BIKES;
 const isParkingRequest = requestType => requestType === REQUEST_TYPE_PARKING;
@@ -67,27 +70,20 @@ const getStation = (requestType, latitude, longitude) => bicineabbiamo.getData({
 });
 
 const getAnswerForSearch = conv => {
-    const {
-        data: {
-            requestType,
-            location:{
-                latitude,
-                longitude,
-            },
-        },
-        device: {
-            location: showDistance,
-        },
-    } = conv;
+    const latitude = pathOr(DEFAULT_LATITUDE, ['data', 'location', 'latitude'], conv);
+    const longitude = pathOr(DEFAULT_LONGITUDE, ['data', 'location', 'longitude'], conv);
+    const requestType = pathOr('', ['data', 'requestType'], conv);
+    const showDistance = pathOr(false, ['device', 'location'], conv);
+
     return getStation(requestType, latitude, longitude)
-        .then(({
-                   name,
-                   distance,
-                   bikes,
-                   emptyslotcount,
-                   latitude: stationLatitude,
-                   longitude: stationLongitude,
-               }) => {
+        .then(station => {
+            const name = pathOr('', ['name'], station);
+            const distance = pathOr(0, ['distance'], station);
+            const bikes = pathOr({}, ['bikes'], station);
+            const emptyslotcount = pathOr(0, ['emptyslotcount'], station);
+            const stationLatitude = pathOr(0, ['latitude'], station);
+            const stationLongitude = pathOr(0, ['longitude'], station);
+
             const text = isParkingRequest(requestType) ? getParkingText(emptyslotcount) : getBikesText(bikes);
 
             const distanceText = showDistance ? ` a ${Math.round(distance)}m da te` : '';
@@ -99,32 +95,14 @@ const getAnswerForSearch = conv => {
 
 const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, italia`})
     .asPromise()
-    .then(({
-               json: {
-                       results: [
-                               {
-                                   geometry: {
-                                           location: {
-                                                   lat: latitude,
-                                                   lng: longitude,
-                                           },
-                                   },
-                               },
-                           ],
-                   },
-    }) => ({ latitude, longitude }));
+    .then(res => ({
+        latitude: pathOr(undefined, ['json', 'results', 0, 'geometry', 'location', 'lat'], res),
+        longitude: pathOr(undefined, ['json', 'results', 0, 'geometry', 'location', 'lng'], res),
+    }));
 
 const handleSearchIntent = (conv) => {
-    let {
-        parameters: {
-            address,
-        },
-        body: {
-            queryResult: {
-                queryText,
-            },
-        },
-    } = conv;
+    const address = pathOr('', ['parameters', 'address'], conv);
+    const queryText = pathOr('', ['body', 'queryResult', 'queryText'], conv);
 
     if (address.length > 0) {
         return getCoordinatesForAddress(address)
@@ -156,16 +134,9 @@ const askForPermission = conv => conv.ask(new Permission({
 
 const handleConfirmationIntent = (conv, params, confirmationGranted) => {
     if (confirmationGranted) {
-        const {
-            device: {
-                location: {
-                    coordinates: {
-                        latitude,
-                        longitude,
-                    },
-                },
-            },
-        } = conv;
+        const latitude = pathOr(undefined, ['device', 'location', 'coordinates', 'latitude'], conv);
+        const longitude = pathOr(undefined, ['device', 'location', 'coordinates', 'longitude'], conv);
+
         if (latitude && longitude) {
             conv.data.location = { latitude, longitude };
             return getAnswerForSearch(conv);
@@ -194,7 +165,8 @@ app.intent('search-parking', conv => {
 app.intent('permission', handleConfirmationIntent);
 
 app.fallback(conv => {
-    const { action, incoming: { parsed: [answer] } } = conv;
+    const answer  = pathOr('', ['incoming', 'parsed', 0], conv);
+    const action  = pathOr('', ['action'], conv);
     if (action.indexOf('smalltalk') === 0) {
         conv.close(answer);
     } else {
