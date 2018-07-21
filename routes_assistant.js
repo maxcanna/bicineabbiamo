@@ -187,6 +187,18 @@ app.fallback(conv => {
     }
 });
 
+app.middleware(conv => {
+    const languageCode = pathOr('en', ['body', 'queryResult', 'languageCode'], conv);
+    const [locale] = languageCode.split('-');
+
+    localizify
+        .add('it', require('./messages/it.json'))
+        .add('en', require('./messages/en.json'))
+        .setLocale(locale);
+
+    return conv;
+});
+
 router.use(bodyParser, app);
 
 module.exports = router;
