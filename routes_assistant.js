@@ -102,7 +102,7 @@ const getAnswerForSearch = conv => {
         })
 };
 
-const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, italia`})
+const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, Italia`})
     .asPromise()
     .then(res => ({
         latitude: pathOr(undefined, ['json', 'results', 0, 'geometry', 'location', 'lat'], res),
