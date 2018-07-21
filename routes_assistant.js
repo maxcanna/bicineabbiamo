@@ -111,7 +111,7 @@ const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: 
 
 const handleSearchIntent = (conv) => {
     const address = pathOr('', ['parameters', 'address'], conv);
-    const queryText = pathOr('', ['body', 'queryResult', 'queryText'], conv);
+    const query = pathOr('', ['query'], conv);
 
     if (address.length > 0) {
         return getCoordinatesForAddress(address)
@@ -125,7 +125,7 @@ const handleSearchIntent = (conv) => {
                 }
             })
             .catch(err => console.log(err)||conv.ask(t('answer.address.error')));
-    } else if (queryText.indexOf(` ${t('house')}`) >= 0) {
+    } else if (query.indexOf(` ${t('house')}`) >= 0) {
         //TODO Get indirizzo casa IF AVAILABLE
         // Simulate casa is 'piazza cinque giornate'
         // conv.data.location = { latitude: 45.4622553, longitude: 9.20674 };
