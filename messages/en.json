@@ -1,0 +1,49 @@
+{
+  "answer": {
+    "result": "There are {text}{distance}in {name} station",
+    "item": "{count} {description}",
+    "address": {
+      "notFound": "I didn't understand the address you asked me, can you repeat?",
+      "error": "I'm sorry, there was an error. Can you try again?"
+    },
+    "house": {
+      "error": "Unfortunately I don't know where you live but I'm improving every day. What else can I do?"
+    },
+    "geolocation": {
+      "error": "Unfortunately I can't get your position. Please try again.",
+      "denied": "I'm sorry but I need to know your position to help you. Can I do anything else?"
+    },
+    "welcome": "Hi, welcome to Bici Milano. What can I do for you?",
+    "fallback": "I'm sorry but I do not know how to help you. Can I do anything else?"
+  },
+  "geolocation": {
+    "context": {
+      "description": "to find {item} near you",
+      "parkings": "empty slots",
+      "bikes": "bikes"
+    }
+  },
+  "distance": " {distance}m from you ",
+  "parking": "empty slot",
+  "parkings": "empty slots",
+  "bike": {
+    "type": {
+      "NORMAL": "bike",
+      "ELECTRIC": "electric bike",
+      "BABY": "children bike"
+    }
+  },
+  "bikes": {
+    "type": {
+      "NORMAL": "bikes",
+      "ELECTRIC": "electric bikes",
+      "BABY": "children bikes"
+    }
+  },
+  "house": "house",
+  "and": "and",
+  "card": {
+    "map": "Map",
+    "directions": "Directions"
+  }
+}
