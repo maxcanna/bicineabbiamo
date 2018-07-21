@@ -6,8 +6,8 @@ self.addEventListener('install', event =>
             .then(() => self.skipWaiting())
     ));
 
-self.addEventListener('fetch', ({ request }) =>
+self.addEventListener('fetch', event =>
     event.respondWith(
-        caches.match(request)
-            .then(response => fetch(request).catch(() => response))
+        caches.match(event.request)
+            .then(response => fetch(event.request).catch(() => response))
     ));
