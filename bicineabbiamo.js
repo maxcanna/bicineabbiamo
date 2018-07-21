@@ -17,6 +17,7 @@ const request = require('request-promise').defaults({
     , {
         filter,
         path,
+        propOr,
         sortBy,
         sum,
         pluck,
@@ -30,12 +31,27 @@ const request = require('request-promise').defaults({
         pick,
         omit,
         trim,
-    head,
-    always,
-    when,
-    curry,
+        head,
+        always,
+        when,
+        curry,
     } = require('ramda')
     , distance = require('gps-distance');
+
+const BIKE_TYPE_NORMAL = 'NORMAL';
+const BIKE_TYPE_ELECTRIC = 'ELECTRIC';
+const BIKE_TYPE_BABY = 'BABY';
+
+const BIKE_TYPES = {
+    2: BIKE_TYPE_NORMAL,
+    3: BIKE_TYPE_ELECTRIC,
+    5: BIKE_TYPE_BABY,
+};
+
+const setBikeType = bike => ({
+    ...bike,
+    type: propOr(BIKE_TYPE_NORMAL, propOr(2, 'id', bike), BIKE_TYPES),
+});
 
 const lowerCaseKeys = compose(
     fromPairs,
@@ -47,7 +63,8 @@ const lowerCaseKeys = compose(
 
 const setBikes = map(
     compose(
-        pick(['count', 'id', 'name']),
+        pick(['count', 'type', 'name']),
+        setBikeType,
         lowerCaseKeys,
         obj => merge(path(['VehicleType'], obj), obj),
     )
