@@ -14,66 +14,101 @@ const request = require('request-promise').defaults({
         },
         json: true,
     })
-    , _ = require('lodash')
+    , {
+        filter,
+        path,
+        sortBy,
+        sum,
+        pluck,
+        compose,
+        map,
+        fromPairs,
+        toPairs,
+        adjust,
+        toLower,
+        merge,
+        pick,
+        omit,
+        trim,
+    head,
+    always,
+    when,
+    curry,
+    } = require('ramda')
     , distance = require('gps-distance');
 
+const lowerCaseKeys = compose(
+    fromPairs,
+    map(
+        adjust(toLower, 0),
+    ),
+    toPairs
+);
 
-const cleanData = data => {
-    const stations = data.Result.Stations.map(item => {
-        item.id = item.Number;
-        item.bikes = item.Availabilities.map(availability => {
-            availability = Object.assign(availability, availability.VehicleType);
-            // Lower case keys
-            availability = _.mapKeys(availability, (v, k) => k.toLowerCase());
-            item.emptyslotcount = availability.emptyslotcount;
-            // Cleaning
-            delete availability.emptyslotcount;
-            delete availability.vehicletype;
+const setBikes = map(
+    compose(
+        pick(['count', 'id', 'name']),
+        lowerCaseKeys,
+        obj => merge(path(['VehicleType'], obj), obj),
+    )
+);
 
-            return availability;
-        });
-        // Cleaning
-        delete item.Availabilities;
-        delete item.Number;
-        delete item.IconColor;
+const cleanData = compose(
+    filter(path(['active'])),
+    map(
+        compose(
+            omit(['availabilities', 'number', 'iconcolor']),
+            lowerCaseKeys,
+            item => ({
+                ...item,
+                Id: path(['Number'], item),
+                emptyslotcount: path(['Availabilities', 0, 'EmptySlotCount'], item),
+                bikes: setBikes(path(['Availabilities'], item)),
+            }),
+        )
+    ),
+    path(['Result', 'Stations']),
+);
 
-        // Lower case keys
-        item = _.mapKeys(item, (v, k) => k.toLowerCase());
-        return item;
-    });
+const sortByDistance = curry(({ latitude, longitude }) => compose(
+    sortBy(
+        path(['distance'])
+    ),
+    map(a => ({
+        ...a,
+        distance: distance(a.latitude, a.longitude, latitude, longitude) * 1000,
+        })
+    )
+));
 
-    return _.filter(stations, 'active');
-};
+const getOnlyWithBikesAvailable = filter(
+    compose(
+        sum,
+        pluck('count'),
+        path(['bikes']),
+    )
+);
 
-const sortByDistance = (data, { latitude, longitude }) => _.sortBy(data.map(item => ({
-    distance: distance(item.latitude, item.longitude, latitude, longitude) * 1000,
-    ...item,
-})), 'distance');
-
-const getOnlyWithBikesAvailable = data => _.filter(data, item => _.sumBy(item.bikes, 'count') > 0);
-
-const getOnlyWithParkingAvailable = data => _.filter(data, item => item.emptyslotcount > 0);
+const getOnlyWithParkingAvailable = filter(path(['emptyslotcount']));
 
 class bicineabbiamo {
-    static getData({ onlyAvailable, onlyWithParking, sortByDistanceFrom, onlyFirstResult }) {
+    static getData({
+                       onlyAvailable = false,
+                       onlyWithParking = false,
+                       sortByDistanceFrom = false,
+                       onlyFirstResult = false,
+                   }) {
         return request()
-            .then(body => {
-                let data = cleanData(JSON.parse(body.trim()));
-
-                if (onlyAvailable) {
-                    data = getOnlyWithBikesAvailable(data);
-                }
-                if (onlyWithParking) {
-                    data = getOnlyWithParkingAvailable(data);
-                }
-                if (sortByDistanceFrom) {
-                    data = sortByDistance(data, sortByDistanceFrom);
-                }
-                if (onlyFirstResult) {
-                    [data] = data;
-                }
-                return data;
-            })
+            .then(compose(
+                when(always(onlyFirstResult), head),
+                when(always(sortByDistanceFrom), sortByDistance(sortByDistanceFrom)),
+                when(always(onlyWithParking), getOnlyWithParkingAvailable),
+                when(always(onlyAvailable), getOnlyWithBikesAvailable),
+                cleanData,
+                JSON.parse,
+                trim,
+            )
+        )
     }
 }
 
