@@ -1,6 +1,8 @@
 const router = require('express').Router()
     , bodyParser = require('body-parser').json()
     , bicineabbiamo = require('../bicineabbiamo')
+    , localizify = require('localizify')
+    , { t } = localizify
     , { pathOr } = require('ramda')
     , { env: { NODE_ENV = 'development', MAPS_API_KEY: mapApiKey } } = process
     , development = NODE_ENV === 'development';
@@ -43,21 +45,28 @@ const getStationCard = (title, text, latitude, longitude) => new BasicCard({
     text,
     title,
     buttons: new Button({
-        title: 'Indicazioni',
+        title: t('card.directions'),
         url: getStationDirectionUrl(latitude, longitude),
     }),
     image: new Image({
         url: getStationMapImageUrl(latitude, longitude),
-        alt: 'Mappa',
+        alt: t('card.map'),
     }),
 });
 
-const getBikesText = bikes => bikes
-    .filter(bike => bike.count > 0)
-    .map(({ count, name }) => `${count} ${name}`)
-    .join(' e ').toLocaleLowerCase();
+const getItemText = ({ count, description }) => t('answer.item', { count, description });
 
-const getParkingText = count => `${count} posti liberi`;
+const getBikesText = bikes => bikes
+    .filter(pathOr(0, ['count']))
+    .map(({ count, type }) => count > 1 ?
+        getItemText({ count, description: t(`bikes.type.${type}`) }) :
+        getItemText({ count, description: t(`bike.type.${type}`) })
+    )
+    .join(` ${t('and')} `);
+
+const getParkingText = count => count > 1 ?
+    getItemText({ count, description: t('parkings') }) :
+    getItemText({ count, description: t('parking') });
 
 const getStation = (requestType, latitude, longitude) => bicineabbiamo.getData({
     onlyAvailable:  isBikesRequest(requestType),
@@ -86,14 +95,14 @@ const getAnswerForSearch = conv => {
 
             const text = isParkingRequest(requestType) ? getParkingText(emptyslotcount) : getBikesText(bikes);
 
-            const distanceText = showDistance ? ` a ${Math.round(distance)}m da te` : '';
+            const distanceText = showDistance ? t('distance', { distance: Math.round(distance) }) : ' ';
 
-            conv.close(`Ci sono ${text}${distanceText} nella stazione ${name}`);
+            conv.close(t('answer.result', { text, distance: distanceText, name } ));
             conv.close(getStationCard(name, text, stationLatitude, stationLongitude));
         })
 };
 
-const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, italia`})
+const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, Italia`})
     .asPromise()
     .then(res => ({
         latitude: pathOr(undefined, ['json', 'results', 0, 'geometry', 'location', 'lat'], res),
@@ -102,7 +111,7 @@ const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: 
 
 const handleSearchIntent = (conv) => {
     const address = pathOr('', ['parameters', 'address'], conv);
-    const queryText = pathOr('', ['body', 'queryResult', 'queryText'], conv);
+    const query = pathOr('', ['query'], conv);
 
     if (address.length > 0) {
         return getCoordinatesForAddress(address)
@@ -112,23 +121,27 @@ const handleSearchIntent = (conv) => {
                     conv.data.location = location;
                     return getAnswerForSearch(conv);
                 } else {
-                    return conv.ask(`Non ho capito bene l'indirizzo che mi hai chiesto, puoi ripetere?`);
+                    return conv.ask(t('answer.address.notFound'));
                 }
             })
-            .catch(err => console.log(err)||conv.ask('Mi spiace, si è verificato un errore. Puoi riprovare?'));
-    } else if (queryText.indexOf(' casa') >= 0) {
+            .catch(err => console.log(err)||conv.ask(t('answer.address.error')));
+    } else if (query.indexOf(` ${t('house')}`) >= 0) {
         //TODO Get indirizzo casa IF AVAILABLE
         // Simulate casa is 'piazza cinque giornate'
         // conv.data.location = { latitude: 45.4622553, longitude: 9.20674 };
         // return getAnswerForSearch(conv);
-        return conv.ask('Purtroppo non so dove abiti ma sto imparando ogni giorno di più. Altro che posso fare?');
+        return conv.ask(t('answer.house.error'));
     } else {
         askForPermission(conv);
     }
 };
 
 const askForPermission = conv => conv.ask(new Permission({
-    context: `per trovare ${isBikesRequest(conv.data.requestType) ? 'le bici' : 'i posti liberi'} intorno a te`,
+    context: t('geolocation.context.description', {
+        item: isBikesRequest(pathOr(REQUEST_TYPE_BIKES, ['data', 'requestType'], conv)) ?
+            t('geolocation.context.bikes') :
+            t('geolocation.context.parkings'),
+    }),
     permissions: ['DEVICE_PRECISE_LOCATION'],
 }));
 
@@ -141,14 +154,14 @@ const handleConfirmationIntent = (conv, params, confirmationGranted) => {
             conv.data.location = { latitude, longitude };
             return getAnswerForSearch(conv);
         } else {
-            conv.ask(`Purtroppo non riesco ad ottenere la tua posizione. Per favore riprova.`);
+            conv.ask(t('answer.geolocation.error'));
         }
     } else {
-        conv.ask(`Mi spiace ma ho bisogno di sapere la tua posizione per aiutarti. Posso fare altro?`);
+        conv.ask(t('answer.geolocation.denied'));
     }
 };
 
-const handleWelcomeIntent = conv => conv.ask('Ciao, benvenuto in Bici Milano. Cosa posso fare per te?');
+const handleWelcomeIntent = conv => conv.ask(t('answer.welcome'));
 
 app.intent('welcome', handleWelcomeIntent);
 
@@ -170,8 +183,20 @@ app.fallback(conv => {
     if (action.indexOf('smalltalk') === 0) {
         conv.close(answer);
     } else {
-        conv.ask('Mi spiace ma non so come aiutarti. Posso fare altro?');
+        conv.ask(t('answer.fallback'));
     }
+});
+
+app.middleware(conv => {
+    const languageCode = pathOr('en', ['body', 'queryResult', 'languageCode'], conv);
+    const [locale] = languageCode.split('-');
+
+    localizify
+        .add('it', require('./messages/it.json'))
+        .add('en', require('./messages/en.json'))
+        .setLocale(locale);
+
+    return conv;
 });
 
 router.use(bodyParser, app);

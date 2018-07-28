@@ -2260,6 +2260,10 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
+localizify@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/localizify/-/localizify-1.2.2.tgz#2be80bc04858e653814230821c6b82ea72a0b023"
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"

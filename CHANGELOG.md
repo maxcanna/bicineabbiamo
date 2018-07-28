@@ -2,16 +2,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.4.0] - 2018-07-13
+## [4.0.0] - 2018-07-21
+### Added
+- `type` field in `bike` object
+### Removed
+- `id` field in `bike` object
+
+## [3.1.1] - 2018-07-13
 ### Changed
 - Use Promise
 
-## [2.3.1] - 2018-07-09
+## [3.1.0] - 2018-07-09
 ### Changed
 - Code refactor
 - Updated `package.json` so the lib is usable in external projects
 
-## [2.3.0] - 2017-03-11
+## [3.0.0] - 2017-03-11
 ### Added
 - Web UI is now available at `/`
 ### Changed

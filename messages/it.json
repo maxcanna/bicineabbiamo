@@ -1,0 +1,49 @@
+{
+  "answer": {
+    "result": "Ci sono {text}{distance}nella stazione {name}",
+    "item": "{count} {description}",
+    "address": {
+      "notFound": "Non ho capito bene l'indirizzo che mi hai chiesto, puoi ripetere?",
+      "error": "Mi spiace, si è verificato un errore. Puoi riprovare?"
+    },
+    "house": {
+      "error": "Purtroppo non so dove abiti ma sto imparando ogni giorno di più. Altro che posso fare?"
+    },
+    "geolocation": {
+      "error": "Purtroppo non riesco ad ottenere la tua posizione. Per favore riprova.",
+      "denied": "Mi spiace ma ho bisogno di sapere la tua posizione per aiutarti. Posso fare altro?"
+    },
+    "welcome": "Ciao, benvenuto in Bici Milano. Cosa posso fare per te?",
+    "fallback": "Mi spiace ma non so come aiutarti. Posso fare altro?"
+  },
+  "geolocation": {
+    "context": {
+      "description": "per trovare {item} vicino a te",
+      "parkings": "i posti liberi",
+      "bikes": "le bici"
+    }
+  },
+  "distance": " a {distance}m da te ",
+  "parking": "posto libero",
+  "parkings": "posti liberi",
+  "bike": {
+    "type": {
+      "NORMAL": "bicicletta",
+      "ELECTRIC": "bicicletta elettrica",
+      "BABY": "bicicletta per bambini"
+    }
+  },
+  "bikes": {
+    "type": {
+      "NORMAL": "biciclette",
+      "ELECTRIC": "biciclette elettriche",
+      "BABY": "biciclette per bambini"
+    }
+  },
+  "house": "casa",
+  "and": "e",
+  "card": {
+    "map": "Mappa",
+    "directions": "Indicazioni"
+  }
+}
