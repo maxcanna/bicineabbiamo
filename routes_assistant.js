@@ -2,6 +2,7 @@ const router = require('express').Router()
     , bodyParser = require('body-parser').json()
     , bicineabbiamo = require('../bicineabbiamo')
     , localizify = require('localizify')
+    , logger = require('./logger')
     , { t } = localizify
     , { pathOr } = require('ramda')
     , { env: { NODE_ENV = 'development', MAPS_API_KEY: mapApiKey } } = process
@@ -195,6 +196,8 @@ app.middleware(conv => {
         .add('it', require('./messages/it.json'))
         .add('en', require('./messages/en.json'))
         .setLocale(locale);
+
+    logger.info(conv);
 
     return conv;
 });
