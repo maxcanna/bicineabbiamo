@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.0] - 2018-10-27
+### Changed
+- `getData` options are now optional
+
 ## [4.0.0] - 2018-07-21
 ### Added
 - `type` field in `bike` object

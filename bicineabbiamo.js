@@ -114,7 +114,7 @@ class bicineabbiamo {
                        onlyWithParking = false,
                        sortByDistanceFrom = false,
                        onlyFirstResult = false,
-                   }) {
+                   } = {}) {
         return request()
             .then(compose(
                 when(always(onlyFirstResult), head),
