@@ -3,7 +3,7 @@
  */
 const request = require('request-promise').defaults({
         method: 'POST',
-        uri: 'http://89.251.178.41:8080/BikeMiService/api',
+        uri: 'http://app.bikemi.com:8888/BikeMiService/api',
         body: {
             'Version': '2.0',
             'Action': 'GetStations',
