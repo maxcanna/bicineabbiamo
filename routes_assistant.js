@@ -35,6 +35,7 @@ const getStationMapImageUrl = (latitude, longitude) => `https://maps.googleapis.
     `&size=330x192`+
     `&maptype=roadmap`+
     `&format=png&scale=2` +
+    `&key=${mapApiKey}` +
     `&markers=size:large%7Ccolor:green%7C${latitude},${longitude}`;
 
 const getStationDirectionUrl = (latitude, longitude) => `https://www.google.com/maps/dir/?` +
