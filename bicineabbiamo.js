@@ -41,10 +41,12 @@ const request = require('request-promise').defaults({
 const BIKE_TYPE_NORMAL = 'NORMAL';
 const BIKE_TYPE_ELECTRIC = 'ELECTRIC';
 const BIKE_TYPE_BABY = 'BABY';
+const BIKE_TYPE_CHILD_SEAT = 'CHILD_SEAT';
 
 const BIKE_TYPES = {
     2: BIKE_TYPE_NORMAL,
     3: BIKE_TYPE_ELECTRIC,
+    4: BIKE_TYPE_CHILD_SEAT,
     5: BIKE_TYPE_BABY,
 };
 

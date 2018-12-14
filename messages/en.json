@@ -30,14 +30,16 @@
     "type": {
       "NORMAL": "bike",
       "ELECTRIC": "electric bike",
-      "BABY": "children bike"
+      "BABY": "children bike",
+      "CHILD_SEAT": "electric bike with child seat"
     }
   },
   "bikes": {
     "type": {
       "NORMAL": "bikes",
       "ELECTRIC": "electric bikes",
-      "BABY": "children bikes"
+      "BABY": "children bikes",
+      "CHILD_SEAT": "electric bikes with child seat"
     }
   },
   "house": "house",
