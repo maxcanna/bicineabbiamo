@@ -30,14 +30,16 @@
     "type": {
       "NORMAL": "bicicletta",
       "ELECTRIC": "bicicletta elettrica",
-      "BABY": "bicicletta per bambini"
+      "BABY": "bicicletta per bambini",
+      "CHILD_SEAT": "bicicletta elettrica con seggiolino"
     }
   },
   "bikes": {
     "type": {
       "NORMAL": "biciclette",
       "ELECTRIC": "biciclette elettriche",
-      "BABY": "biciclette per bambini"
+      "BABY": "biciclette per bambini",
+      "CHILD_SEAT": "biciclette elettriche con seggiolino"
     }
   },
   "house": "casa",
