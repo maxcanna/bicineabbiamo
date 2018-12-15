@@ -1,0 +1,7 @@
+{
+  "name": "bicineabbiamo",
+  "alias": "bicineabbiamo.massi.ws",
+  "version": 1,
+  "type": "docker",
+  "regions": ["all"]
+}
