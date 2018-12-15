@@ -1,6 +1,6 @@
 const router = require('express').Router()
     , bodyParser = require('body-parser').json()
-    , bicineabbiamo = require('../bicineabbiamo')
+    , bicineabbiamo = require('./bicineabbiamo')
     , localizify = require('localizify')
     , logger = require('./logger')
     , { t } = localizify
