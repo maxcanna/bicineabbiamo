@@ -5,8 +5,15 @@ const newrelic = require('newrelic') // eslint-disable-line
     , logger = require('./logger')
     , Rollbar = require('rollbar')
     , morgan = require('morgan')
-    , { env: { PORT: port = 3000, ROLLBAR_KEY } } = process
-    , rollbar = new Rollbar(ROLLBAR_KEY)
+    , { env: { PORT: port = 3000, ROLLBAR_KEY, NODE_ENV } } = process
+    , environment = NODE_ENV || 'production'
+    , development = environment === 'development'
+    , rollbar = new Rollbar({
+        accessToken: ROLLBAR_KEY,
+        environment,
+        captureUncaught: !development,
+        captureUnhandledRejections: !development,
+    })
     , app = express();
 
 app.use(require('compression')());

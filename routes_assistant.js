@@ -1,6 +1,6 @@
 const router = require('express').Router()
     , bodyParser = require('body-parser').json()
-    , bicineabbiamo = require('../bicineabbiamo')
+    , bicineabbiamo = require('./bicineabbiamo')
     , localizify = require('localizify')
     , logger = require('./logger')
     , { t } = localizify
@@ -32,7 +32,7 @@ const isParkingRequest = requestType => requestType === REQUEST_TYPE_PARKING;
 
 const getStationMapImageUrl = (latitude, longitude) => `https://maps.googleapis.com/maps/api/staticmap?` +
     `autoscale=true` +
-    `&size=330x192`+
+    `&size=335x192`+
     `&maptype=roadmap`+
     `&format=png&scale=2` +
     `&key=${mapApiKey}` +
@@ -58,13 +58,18 @@ const getStationCard = (title, text, latitude, longitude) => new BasicCard({
 
 const getItemText = ({ count, description }) => t('answer.item', { count, description });
 
-const getBikesText = bikes => bikes
-    .filter(pathOr(0, ['count']))
-    .map(({ count, type }) => count > 1 ?
-        getItemText({ count, description: t(`bikes.type.${type}`) }) :
-        getItemText({ count, description: t(`bike.type.${type}`) })
-    )
-    .join(` ${t('and')} `);
+const getBikesText = bikes => {
+    const items = bikes
+        .filter(pathOr(0, ['count']))
+        .map(({count, type}) => count > 1 ?
+            getItemText({count, description: t(`bikes.type.${type}`)}) :
+            getItemText({count, description: t(`bike.type.${type}`)})
+        );
+
+    return [items.splice(0, items.length - 2).join(', ') , items.join(` ${t('and')} `)]
+        .filter(Boolean)
+        .join(', ');
+};
 
 const getParkingText = count => count > 1 ?
     getItemText({ count, description: t('parkings') }) :
