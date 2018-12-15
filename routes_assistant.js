@@ -32,7 +32,7 @@ const isParkingRequest = requestType => requestType === REQUEST_TYPE_PARKING;
 
 const getStationMapImageUrl = (latitude, longitude) => `https://maps.googleapis.com/maps/api/staticmap?` +
     `autoscale=true` +
-    `&size=330x192`+
+    `&size=335x192`+
     `&maptype=roadmap`+
     `&format=png&scale=2` +
     `&key=${mapApiKey}` +
