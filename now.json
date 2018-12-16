@@ -1,6 +1,9 @@
 {
   "name": "bicineabbiamo",
-  "alias": "bicineabbiamo.massi.ws",
+  "alias": [
+    "bicineabbiamo.massi.ws",
+    "bicineabbiamo.now.sh"
+  ],
   "version": 1,
   "type": "docker",
   "env": {
