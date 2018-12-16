@@ -64,7 +64,9 @@
                             url: `/api?lat=${position.coords.latitude}&lon=${position.coords.longitude}&onlyAvailable=true&onlyFirstResult=true`,
                         })
                                 .done(data => {
-                                    const bikes = data.bikes.map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
+                                    const bikes = data.bikes
+                                        .filter(({ count }) => count > 0)
+                                        .map(bike => ` ${bike.count} ${bike.name.toLowerCase()}`);
 
                                     content.html(`Ho trovato ${bikes.join(' e <br />')}<br /> a ` +
                                             `<a href="https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=${data.latitude},${data.longitude} " ` +
