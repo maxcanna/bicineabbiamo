@@ -168,10 +168,6 @@ const handleConfirmationIntent = (conv, params, confirmationGranted) => {
     }
 };
 
-const handleWelcomeIntent = conv => conv.ask(t('answer.welcome'));
-
-app.intent('welcome', handleWelcomeIntent);
-
 app.intent('search-bikes', conv => {
     conv.data.requestType = REQUEST_TYPE_BIKES;
     return handleSearchIntent(conv);

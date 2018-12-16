@@ -13,7 +13,6 @@
       "error": "Purtroppo non riesco ad ottenere la tua posizione. Per favore riprova.",
       "denied": "Mi spiace ma ho bisogno di sapere la tua posizione per aiutarti. Posso fare altro?"
     },
-    "welcome": "Ciao, benvenuto in Bici Milano. Cosa posso fare per te?",
     "fallback": "Mi spiace ma non so come aiutarti. Posso fare altro?"
   },
   "geolocation": {

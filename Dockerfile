@@ -1,6 +1,6 @@
 FROM node:alpine as builder
 RUN apk update
-RUN apk add git
+RUN apk add git python make g++
 ADD ./ /var/www/bicineabbiamo/
 WORKDIR /var/www/bicineabbiamo
 RUN yarn --production --ignore-engines
