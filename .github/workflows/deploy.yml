@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  notify:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: Notify on Slack
+      run: echo '{"username":"GitHub","icon_emoji":":github:","attachments":[{"color":"good","text":"Deploy completed"}]}' | curl -X POST -H content-type:application/json ${{ secrets.SLACK_URL }} -d @-
+    - name: Report deploy on Rollbar
+      run: echo '{"environment":"production","revision":"'$GITHUB_SHA'","rollbar_username":"'$GITHUB_ACTOR'"}' | curl -X POST -H x-rollbar-access-token:${{ secrets.ROLLBAR_API_KEY }} https://api.rollbar.com/api/1/deploy -d @-

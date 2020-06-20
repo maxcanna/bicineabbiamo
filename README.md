@@ -1,5 +1,5 @@
 # bicineabbiamo
-[![Build Status](https://scrutinizer-ci.com/g/maxcanna/bicineabbiamo/badges/build.png?b=master)](https://scrutinizer-ci.com/g/maxcanna/bicineabbiamo/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maxcanna/bicineabbiamo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maxcanna/bicineabbiamo/?branch=master) [![Docker Pulls](https://img.shields.io/docker/pulls/maxcanna/bicineabbiamo.svg)](https://hub.docker.com/r/maxcanna/bicineabbiamo/) [![](https://img.shields.io/github/license/maxcanna/bicineabbiamo.svg?maxAge=2592000)](https://github.com/maxcanna/bicineabbiamo/blob/master/LICENSE)
+[![CI Status](https://github.com/maxcanna/bicineabbiamo/workflows/CI/badge.svg)](https://github.com/maxcanna/bicineabbiamo/actions) [![Docker Status](https://github.com/maxcanna/bicineabbiamo/workflows/Deploy/badge.svg)](https://github.com/maxcanna/bicineabbiamo/actions) [![Docker Pulls](https://img.shields.io/docker/pulls/maxcanna/bicineabbiamo.svg)](https://hub.docker.com/r/maxcanna/bicineabbiamo/) [![](https://img.shields.io/github/license/maxcanna/bicineabbiamo.svg?maxAge=2592000)](https://github.com/maxcanna/bicineabbiamo/blob/master/LICENSE)
 
 Simple API to get BikeMi station informations. [Demo](https://bicineabbiamo.massi.dev).
 
