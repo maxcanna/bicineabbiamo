@@ -15,10 +15,6 @@ You've several way to get bicineabbiamo running:
 
   `docker run -d -p 80:3000 maxcanna/bicineabbiamo:latest`.
 
-* You can use now:
-
-  [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/maxcanna/bicineabbiamo)
-
 * Or manually:
 
   * `npm i --production`
