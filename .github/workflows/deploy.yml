@@ -7,11 +7,21 @@ on:
 
 jobs:
   notify:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
-    - name: Check out code
-      uses: actions/checkout@v1
-    - name: Notify on Slack
-      run: echo '{"username":"GitHub","icon_emoji":":github:","attachments":[{"color":"good","text":"Deploy completed"}]}' | curl -X POST -H content-type:application/json ${{ secrets.SLACK_URL }} -d @-
+    - name: Report deploy on GitHub
+      run: |
+              export DEPLOYMENT_ID=$(echo '{"ref":"master","required_contexts":[]}' | curl -X POST \
+              -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+              -H content-type:application/json -H accept:application/vnd.github.ant-man-preview+json \
+              https://api.github.com/repos/maxcanna/bicineabbiamo/deployments -d @- | jq -r .id)
+              echo Deployment id: $DEPLOYMENT_ID
+              echo "::set-env name=DEPLOYMENT_ID::$DEPLOYMENT_ID"
+    - name: Update deploy on GitHub
+      run: |
+              echo '{"state":"success"}' | curl -X POST \
+              -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+              -H content-type:application/json -H accept:application/vnd.github.ant-man-preview+json \
+              https://api.github.com/repos/maxcanna/bicineabbiamo/deployments/$DEPLOYMENT_ID/statuses -d @- | jq -r
     - name: Report deploy on Rollbar
       run: echo '{"environment":"production","revision":"'$GITHUB_SHA'","rollbar_username":"'$GITHUB_ACTOR'"}' | curl -X POST -H x-rollbar-access-token:${{ secrets.ROLLBAR_API_KEY }} https://api.rollbar.com/api/1/deploy -d @-
