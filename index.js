@@ -17,7 +17,7 @@ const newrelic = require('newrelic') // eslint-disable-line
     , app = express();
 
 app.use(require('compression')());
-app.use(morgan('combined', { stream: logger }));
+app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 app.use('/api', api);
 app.use('/assistant', assistant);
 app.use(express.static(__dirname + '/public'));

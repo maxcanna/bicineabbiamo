@@ -37,15 +37,16 @@
     "compression": "^1.7.3",
     "express": "^4.16.4",
     "gps-distance": "0.0.4",
-    "le_node": "^1.8.0",
     "localizify": "^1.2.4",
     "morgan": "^1.9.1",
     "newrelic": "^4.12.0",
+    "r7insight_node": "^2.1.0",
     "ramda": "^0.25.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "rollbar": "^2.5.1",
-    "winston": "^2.4.5"
+    "winston": "^3.3.3",
+    "winston-transport": "^4.4.0"
   },
   "devDependencies": {
     "dredd": "^5.1.11",
