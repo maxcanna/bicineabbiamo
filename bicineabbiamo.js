@@ -1,19 +1,7 @@
 /**
  * Created by massimilianocannarozzo on 11/03/17.
  */
-const request = require('request-promise').defaults({
-    method: 'POST',
-    uri: 'http://app.bikemi.com:8888/BikeMiService/api',
-    body: {
-        Version: '2.0',
-        Action: 'GetStations',
-        Parameters: {
-            Culture: 'it-IT',
-        },
-        Hash: '8275DD31B51C959DFF7B8A66B336F454',
-    },
-    json: true,
-});
+const axios = require('axios');
 const {
     filter,
     path,
@@ -30,7 +18,6 @@ const {
     merge,
     pick,
     omit,
-    trim,
     head,
     always,
     when,
@@ -86,7 +73,7 @@ const cleanData = compose(
             }),
         )
     ),
-    path(['Result', 'Stations']),
+    path(['data', 'Result', 'Stations']),
 );
 
 const sortByDistance = curry(({ latitude, longitude }) => compose(
@@ -117,17 +104,21 @@ class bicineabbiamo {
         sortByDistanceFrom = false,
         onlyFirstResult = false,
     } = {}) {
-        return request()
+        return axios.post('http://app.bikemi.com:8888/BikeMiService/api', {
+            Version: '2.0',
+            Action: 'GetStations',
+            Parameters: {
+                Culture: 'it-IT',
+            },
+            Hash: '8275DD31B51C959DFF7B8A66B336F454',
+        })
             .then(compose(
                 when(always(onlyFirstResult), head),
                 when(always(sortByDistanceFrom), sortByDistance(sortByDistanceFrom)),
                 when(always(onlyWithParking), getOnlyWithParkingAvailable),
                 when(always(onlyAvailable), getOnlyWithBikesAvailable),
                 cleanData,
-                JSON.parse,
-                trim,
-            )
-            )
+            ))
     }
 }
 
