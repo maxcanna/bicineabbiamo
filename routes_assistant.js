@@ -36,7 +36,7 @@ const isParkingRequest = requestType => requestType === REQUEST_TYPE_PARKING;
 
 const getStationMapImageUrl = (latitude, longitude) => `https://maps.googleapis.com/maps/api/staticmap?` +
     `autoscale=true` +
-    `&size=335x192`+
+    `&size=400x192`+
     `&maptype=roadmap`+
     `&format=png&scale=2` +
     `&key=${mapApiKey}` +
@@ -57,7 +57,10 @@ const getStationCard = (title, text, latitude, longitude) => new BasicCard({
     image: new Image({
         url: getStationMapImageUrl(latitude, longitude),
         alt: t('card.map'),
+        height: 192,
+        width: 400,
     }),
+    display: 'CROPPED',
 });
 
 const getItemText = ({ count, description }) => t('answer.item', { count, description });
