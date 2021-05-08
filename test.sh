@@ -8,4 +8,4 @@ if [ -z "$ROLLBAR_KEY" ]; then
     export ROLLBAR_KEY=''
 fi
 
-dredd
+npx dredd@^5.1.11
