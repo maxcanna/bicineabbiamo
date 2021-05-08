@@ -2,41 +2,41 @@
  * Created by massimilianocannarozzo on 11/03/17.
  */
 const request = require('request-promise').defaults({
-        method: 'POST',
-        uri: 'http://app.bikemi.com:8888/BikeMiService/api',
-        body: {
-            'Version': '2.0',
-            'Action': 'GetStations',
-            'Parameters': {
-                'Culture': 'it-IT',
-            },
-            'Hash': '8275DD31B51C959DFF7B8A66B336F454',
+    method: 'POST',
+    uri: 'http://app.bikemi.com:8888/BikeMiService/api',
+    body: {
+        Version: '2.0',
+        Action: 'GetStations',
+        Parameters: {
+            Culture: 'it-IT',
         },
-        json: true,
-    })
-    , {
-        filter,
-        path,
-        propOr,
-        sortBy,
-        sum,
-        pluck,
-        compose,
-        map,
-        fromPairs,
-        toPairs,
-        adjust,
-        toLower,
-        merge,
-        pick,
-        omit,
-        trim,
-        head,
-        always,
-        when,
-        curry,
-    } = require('ramda')
-    , distance = require('gps-distance');
+        Hash: '8275DD31B51C959DFF7B8A66B336F454',
+    },
+    json: true,
+});
+const {
+    filter,
+    path,
+    propOr,
+    sortBy,
+    sum,
+    pluck,
+    compose,
+    map,
+    fromPairs,
+    toPairs,
+    adjust,
+    toLower,
+    merge,
+    pick,
+    omit,
+    trim,
+    head,
+    always,
+    when,
+    curry,
+} = require('ramda');
+const distance = require('gps-distance');
 
 const BIKE_TYPE_NORMAL = 'NORMAL';
 const BIKE_TYPE_ELECTRIC = 'ELECTRIC';
@@ -96,7 +96,7 @@ const sortByDistance = curry(({ latitude, longitude }) => compose(
     map(a => ({
         ...a,
         distance: distance(a.latitude, a.longitude, latitude, longitude) * 1000,
-        })
+    })
     )
 ));
 
@@ -112,11 +112,11 @@ const getOnlyWithParkingAvailable = filter(path(['emptyslotcount']));
 
 class bicineabbiamo {
     static getData({
-                       onlyAvailable = false,
-                       onlyWithParking = false,
-                       sortByDistanceFrom = false,
-                       onlyFirstResult = false,
-                   } = {}) {
+        onlyAvailable = false,
+        onlyWithParking = false,
+        sortByDistanceFrom = false,
+        onlyFirstResult = false,
+    } = {}) {
         return request()
             .then(compose(
                 when(always(onlyFirstResult), head),
@@ -127,7 +127,7 @@ class bicineabbiamo {
                 JSON.parse,
                 trim,
             )
-        )
+            )
     }
 }
 

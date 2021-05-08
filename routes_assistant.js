@@ -1,12 +1,12 @@
-const router = require('express').Router()
-    , bodyParser = require('body-parser').json()
-    , bicineabbiamo = require('./bicineabbiamo')
-    , localizify = require('localizify')
-    , logger = require('./logger')
-    , { t } = localizify
-    , { pathOr } = require('ramda')
-    , { env: { NODE_ENV = 'development', MAPS_API_KEY: mapApiKey } } = process
-    , development = NODE_ENV === 'development';
+const router = require('express').Router();
+const bodyParser = require('body-parser').json();
+const bicineabbiamo = require('./bicineabbiamo');
+const localizify = require('localizify');
+const logger = require('./logger');
+const { t } = localizify;
+const { pathOr } = require('ramda');
+const { env: { NODE_ENV = 'development', MAPS_API_KEY: mapApiKey } } = process;
+const development = NODE_ENV === 'development';
 const {
     dialogflow,
     Permission,
@@ -21,6 +21,10 @@ const googleMapsClient = require('@google/maps').createClient({
     key: mapApiKey,
     Promise: Promise,
 });
+
+localizify
+    .add('it', require('./messages/it.json'))
+    .add('en', require('./messages/en.json'));
 
 const REQUEST_TYPE_BIKES = 'REQUEST_TYPE_BIKES';
 const REQUEST_TYPE_PARKING = 'REQUEST_TYPE_PARKING';
@@ -61,9 +65,9 @@ const getItemText = ({ count, description }) => t('answer.item', { count, descri
 const getBikesText = bikes => {
     const items = bikes
         .filter(pathOr(0, ['count']))
-        .map(({count, type}) => count > 1 ?
-            getItemText({count, description: t(`bikes.type.${type}`)}) :
-            getItemText({count, description: t(`bike.type.${type}`)})
+        .map(({ count, type }) => count > 1 ?
+            getItemText({ count, description: t(`bikes.type.${type}`) }) :
+            getItemText({ count, description: t(`bike.type.${type}`) })
         );
 
     return [items.splice(0, items.length - 2).join(', ') , items.join(` ${t('and')} `)]
@@ -109,7 +113,7 @@ const getAnswerForSearch = conv => {
         })
 };
 
-const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, Italia`})
+const getCoordinatesForAddress = address => googleMapsClient.geocode({ address: `${address}, Milano, Italia` })
     .asPromise()
     .then(res => ({
         latitude: pathOr(undefined, ['json', 'results', 0, 'geometry', 'location', 'lat'], res),
@@ -194,10 +198,7 @@ app.middleware(conv => {
     const languageCode = pathOr('en', ['body', 'queryResult', 'languageCode'], conv);
     const [locale] = languageCode.split('-');
 
-    localizify
-        .add('it', require('./messages/it.json'))
-        .add('en', require('./messages/en.json'))
-        .setLocale(locale);
+    localizify.setLocale(locale);
 
     logger.info(conv);
 
