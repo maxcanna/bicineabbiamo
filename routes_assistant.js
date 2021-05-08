@@ -196,9 +196,8 @@ app.fallback(conv => {
 
 app.middleware(conv => {
     const languageCode = pathOr('en', ['body', 'queryResult', 'languageCode'], conv);
-    const [locale] = languageCode.split('-');
 
-    localizify.setLocale(locale);
+    localizify.setLocale(localizify.detectLocale(languageCode));
 
     logger.info(conv);
 
