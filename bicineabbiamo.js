@@ -116,10 +116,10 @@ class bicineabbiamo {
             Hash: '8275DD31B51C959DFF7B8A66B336F454',
         })
             .then(compose(
-                when(always(onlyFirstResult === 'true'), head),
+                when(always(''+onlyFirstResult === 'true'), head),
                 when(always(latitude > 0 && longitude > 0), sortByDistance({ latitude, longitude })),
-                when(always(onlyWithParking === 'true'), getOnlyWithParkingAvailable),
-                when(always(onlyAvailable === 'true'), getOnlyWithBikesAvailable),
+                when(always(''+onlyWithParking === 'true'), getOnlyWithParkingAvailable),
+                when(always(''+onlyAvailable === 'true'), getOnlyWithBikesAvailable),
                 cleanData,
             ))
     }
