@@ -25,4 +25,4 @@ app.use(rollbar.errorHandler());
 app.disable('x-powered-by');
 app.enable('trust proxy');
 
-app.listen(port, () => logger.log(`bicineabbiamo listening on port ${port}`));
+app.listen(port, () => logger.info(`bicineabbiamo listening on port ${port}`));
