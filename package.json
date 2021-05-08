@@ -10,10 +10,7 @@
   "main": "bicineabbiamo.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "yarn lint && yarn test-ci",
-    "test-ci": "./test.sh",
-    "lint": "npx eslint@^5.1.0 ."
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
