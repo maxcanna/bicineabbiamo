@@ -4,7 +4,7 @@
     "yarn": "^1.12.3"
   },
   "name": "bicineabbiamo",
-  "version": "4.2.4",
+  "version": "4.2.5",
   "description": "API to get BikeMi stations info",
   "private": true,
   "main": "bicineabbiamo.js",
@@ -13,7 +13,7 @@
     "dev": "nodemon index.js",
     "test": "yarn lint && yarn test-ci",
     "test-ci": "./test.sh",
-    "lint": "eslint ."
+    "lint": "npx eslint@^5.1.0 ."
   },
   "repository": {
     "type": "git",
@@ -49,7 +49,6 @@
     "winston-transport": "^4.4.0"
   },
   "devDependencies": {
-    "eslint": "^5.1.0",
     "nodemon": "^1.17.5"
   }
 }
