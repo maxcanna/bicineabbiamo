@@ -1,8 +1,8 @@
 /**
  * Created by massimilianocannarozzo on 11/03/17.
  */
-const router = require('express').Router()
-    , bicineabbiamo = require('./bicineabbiamo');
+const router = require('express').Router();
+const bicineabbiamo = require('./bicineabbiamo');
 
 router.get('/', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWithParking } }, res) => {
     const options = {
