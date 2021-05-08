@@ -4,14 +4,10 @@
     "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+    "ecmaVersion": 2018
   },
   "rules": {
-    "comma-style": ["error", "first", {"exceptions": {"ObjectExpression": true}}],
+    "comma-style": ["error", "first", { "exceptions": { "ObjectExpression": true } }],
     "comma-dangle": ["error", "always-multiline"],
     "dot-notation": "error",
     "no-unused-vars": "error",
