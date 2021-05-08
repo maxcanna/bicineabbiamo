@@ -4,21 +4,14 @@
 const router = require('express').Router();
 const bicineabbiamo = require('./bicineabbiamo');
 
-router.get('/', ({ query: { onlyAvailable, lat, lon, onlyFirstResult, onlyWithParking } }, res) => {
-    const options = {
-        onlyAvailable: onlyAvailable === 'true',
-        onlyFirstResult: onlyFirstResult === 'true',
-        onlyWithParking: onlyWithParking === 'true',
+router.get('/', ({ query: { lat: latitude, lon: longitude }, query }, res) => {
+    query.sortByDistanceFrom = {
+        latitude,
+        longitude
     };
 
-    if (lat > 0 && lon > 0) {
-        options.sortByDistanceFrom = {
-            latitude: parseFloat(lat),
-            longitude: parseFloat(lon),
-        };
-    }
-
-    bicineabbiamo.getData(options)
+    bicineabbiamo
+        .getData(query)
         .then(data => res.json(data))
         .catch(err => console.error(err) || res.send(err));
 });

@@ -101,9 +101,12 @@ class bicineabbiamo {
     static getData({
         onlyAvailable = false,
         onlyWithParking = false,
-        sortByDistanceFrom = false,
-        onlyFirstResult = false,
+        sortByDistanceFrom = {},
+        onlyFirstResult = false
     } = {}) {
+        const latitude = parseFloat(sortByDistanceFrom.latitude);
+        const longitude = parseFloat(sortByDistanceFrom.longitude);
+
         return axios.post('http://app.bikemi.com:8888/BikeMiService/api', {
             Version: '2.0',
             Action: 'GetStations',
@@ -113,10 +116,10 @@ class bicineabbiamo {
             Hash: '8275DD31B51C959DFF7B8A66B336F454',
         })
             .then(compose(
-                when(always(onlyFirstResult), head),
-                when(always(sortByDistanceFrom), sortByDistance(sortByDistanceFrom)),
-                when(always(onlyWithParking), getOnlyWithParkingAvailable),
-                when(always(onlyAvailable), getOnlyWithBikesAvailable),
+                when(always(onlyFirstResult === 'true'), head),
+                when(always(latitude > 0 && longitude > 0), sortByDistance({ latitude, longitude })),
+                when(always(onlyWithParking === 'true'), getOnlyWithParkingAvailable),
+                when(always(onlyAvailable === 'true'), getOnlyWithBikesAvailable),
                 cleanData,
             ))
     }
