@@ -31,6 +31,7 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "actions-on-google": "^2.2.0",
+    "axios": "^0.21.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "gps-distance": "0.0.4",
