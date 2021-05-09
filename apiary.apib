@@ -22,16 +22,17 @@ Get available bikes amount and types.
 + Response 200 (application/json; charset=utf-8)
 
         {
+            "id": 1,
+            "description": "Duomo - lato Via Mengoni",
             "name": "Duomo",
             "latitude": 45.464683238626,
             "longitude": 9.18879747390747,
             "active": true,
-            "slotsnumber": 24,
-            "id": 1,
-            "emptyslotcount": 11,
+            "slotsnumber": 27,
+            "emptyslotcount": 16,
             "bikes": [
                 {
-                    "count": 10,
+                    "count": 11,
                     "type": "NORMAL",
                     "name": "Biciclette"
                 },
@@ -41,9 +42,9 @@ Get available bikes amount and types.
                     "name": "Biciclette elettriche"
                 },
                 {
-                    "count": 1,
-                    "type": "BABY",
-                    "name": "Biciclette per bambini"
+                    "count": 0,
+                    "type": "CHILD_SEAT",
+                    "name": "Biciclette con seggiolino"
                 }
             ]
         }
