@@ -84,8 +84,11 @@ const getOnlyWithBikesAvailable = filter(path(['bikesnumber']));
 
 const getOnlyWithParkingAvailable = filter(path(['emptyslotcount']));
 
+const getOnlyActive = filter(path(['active']));
+
 class bicineabbiamo {
     static getData({
+        onlyActive = true,
         onlyAvailable = false,
         onlyWithParking = false,
         sortByDistanceFrom = {},
@@ -118,6 +121,7 @@ class bicineabbiamo {
                 sortBy(path(['id'])),
                 when(always('' + onlyWithParking === 'true'), getOnlyWithParkingAvailable),
                 when(always('' + onlyAvailable === 'true'), getOnlyWithBikesAvailable),
+                when(always('' + onlyActive === 'true'), getOnlyActive),
                 cleanData,
             ))
     }
