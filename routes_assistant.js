@@ -103,11 +103,11 @@ const getAnswerForSearch = conv => {
             const name = pathOr('', ['name'], station);
             const distance = pathOr(0, ['distance'], station);
             const bikes = pathOr({}, ['bikes'], station);
-            const emptyslotcount = pathOr(0, ['emptyslotcount'], station);
+            const emptyslotscount = pathOr(0, ['emptyslotscount'], station);
             const stationLatitude = pathOr(0, ['latitude'], station);
             const stationLongitude = pathOr(0, ['longitude'], station);
 
-            const text = isParkingRequest(requestType) ? getParkingText(emptyslotcount) : getBikesText(bikes);
+            const text = isParkingRequest(requestType) ? getParkingText(emptyslotscount) : getBikesText(bikes);
 
             const distanceText = showDistance ? t('distance', { distance: Math.round(distance) }) : ' ';
 
