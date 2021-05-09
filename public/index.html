@@ -61,7 +61,7 @@
                     position => {
                         content.html('Conto le bici una ad una...');
                         $.ajax({
-                            url: `/api?lat=${position.coords.latitude}&lon=${position.coords.longitude}&onlyAvailable=true&onlyFirstResult=true`,
+                            url: `/api?lat=${position.coords.latitude}&lon=${position.coords.longitude}&onlyWithBikes=true&onlyFirstResult=true`,
                         })
                                 .done(data => {
                                     const bikes = data.bikes

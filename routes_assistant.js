@@ -83,7 +83,7 @@ const getParkingText = count => count > 1 ?
     getItemText({ count, description: t('parking') });
 
 const getStation = (requestType, latitude, longitude) => bicineabbiamo.getData({
-    onlyAvailable:  isBikesRequest(requestType),
+    onlyWithBikes:  isBikesRequest(requestType),
     onlyWithParking: isParkingRequest(requestType),
     onlyFirstResult: true,
     sortByDistanceFrom: {

@@ -89,7 +89,7 @@ const getOnlyActive = filter(path(['active']));
 class bicineabbiamo {
     static getData({
         onlyActive = true,
-        onlyAvailable = false,
+        onlyWithBikes = false,
         onlyWithParking = false,
         sortByDistanceFrom = {},
         onlyFirstResult = false
@@ -120,7 +120,7 @@ class bicineabbiamo {
                 when(always(latitude > 0 && longitude > 0), sortByDistance({ latitude, longitude })),
                 sortBy(path(['id'])),
                 when(always('' + onlyWithParking === 'true'), getOnlyWithParkingAvailable),
-                when(always('' + onlyAvailable === 'true'), getOnlyWithBikesAvailable),
+                when(always('' + onlyWithBikes === 'true'), getOnlyWithBikesAvailable),
                 when(always('' + onlyActive === 'true'), getOnlyActive),
                 cleanData,
             ))
