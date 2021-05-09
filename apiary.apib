@@ -5,7 +5,7 @@ HOST: https://bicineabbiamo.massi.dev/api
 
 Simple API to get BikeMi station informations.
 
-## Stations Collection [/{?lat,lon,onlyAvailable,onlyWithParking,onlyFirstResult}]
+## Stations Collection [/{?lat,lon,onlyWithBikes,onlyWithParking,onlyFirstResult}]
 
 ### List Stations [GET]
 
@@ -15,6 +15,8 @@ Get available bikes amount and types.
     + lat: `45.464683238626` (float, optional) - Latitude to search around and sort
     + lon: `9.18879747390747` (float, optional) - Longitude to search around and sort
     + onlyAvailable: `true` (boolean, optional) - Return only stations with available bikes
+        + Default: false
+    + onlyWithParking: `true` (boolean, optional) - Return only stations with available parking
         + Default: false
     + onlyFirstResult: `true` (boolean, optional) - Return only the first result
         + Default: false
