@@ -59,7 +59,7 @@ const cleanData = compose(
                 latitude: path(['coord', 'lat'], item),
                 longitude: path(['coord', 'lng'], item),
                 active: path(['enabled'], item),
-                bikesnumber: path(['availabilityInfo', 'availableVehicles'], item),
+                bikescount: path(['availabilityInfo', 'availableVehicles'], item),
                 slotsnumber: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
                 emptyslotcount: path(['availabilityInfo', 'availableDocks'], item),
                 bikes: setBikes(path(['availabilityInfo', 'availableVehicleCategories'], item))
@@ -80,7 +80,7 @@ const sortByDistance = curry(({ latitude, longitude }) => compose(
     )
 ));
 
-const getOnlyWithBikesAvailable = filter(path(['bikesnumber']));
+const getOnlyWithBikesAvailable = filter(path(['bikescount']));
 
 const getOnlyWithParkingAvailable = filter(path(['emptyslotcount']));
 

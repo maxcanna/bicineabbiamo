@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.3.0] - 2021-05-09
 ### Changed
 - `onlyAvailable` filter is now `onlyWithBikes` to be coherent with `onlyWithParking`
+- `bikesnumber` field is now `bikescount` to be coherent with `emptyslotcount`
 
 ## [5.2.0] - 2021-05-09
 ### Added
