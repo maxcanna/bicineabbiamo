@@ -11,13 +11,7 @@ const {
     pluck,
     compose,
     map,
-    fromPairs,
-    toPairs,
-    adjust,
-    toLower,
-    merge,
     pick,
-    omit,
     head,
     always,
     when,
@@ -27,53 +21,53 @@ const distance = require('gps-distance');
 
 const BIKE_TYPE_NORMAL = 'NORMAL';
 const BIKE_TYPE_ELECTRIC = 'ELECTRIC';
-const BIKE_TYPE_BABY = 'BABY';
+// TODO const BIKE_TYPE_BABY = 'BABY';
 const BIKE_TYPE_CHILD_SEAT = 'CHILD_SEAT';
 
 const BIKE_TYPES = {
-    2: BIKE_TYPE_NORMAL,
-    3: BIKE_TYPE_ELECTRIC,
-    4: BIKE_TYPE_CHILD_SEAT,
-    5: BIKE_TYPE_BABY,
+    bike: BIKE_TYPE_NORMAL,
+    ebike: BIKE_TYPE_ELECTRIC,
+    ebike_with_childseat: BIKE_TYPE_CHILD_SEAT,
+    // TODO 5: BIKE_TYPE_BABY
+};
+
+const BIKE_NAMES = {
+    bike: 'Biciclette',
+    ebike: 'Biciclette elettriche',
+    ebike_with_childseat: 'Biciclette elettriche con seggiolino',
+    // TODO 5: BIKE_TYPE_BABY
 };
 
 const setBikeType = bike => ({
     ...bike,
-    type: propOr(BIKE_TYPE_NORMAL, propOr(2, 'id', bike), BIKE_TYPES),
+    type: propOr(BIKE_TYPE_NORMAL, path(['category'], bike), BIKE_TYPES),
+    name: propOr('Biciclette', path(['category'], bike), BIKE_NAMES),
 });
-
-const lowerCaseKeys = compose(
-    fromPairs,
-    map(
-        adjust(toLower, 0),
-    ),
-    toPairs
-);
 
 const setBikes = map(
     compose(
         pick(['count', 'type', 'name']),
         setBikeType,
-        lowerCaseKeys,
-        obj => merge(path(['VehicleType'], obj), obj),
     )
 );
 
 const cleanData = compose(
-    filter(path(['active'])),
     map(
         compose(
-            omit(['availabilities', 'number', 'iconcolor']),
-            lowerCaseKeys,
             item => ({
-                ...item,
-                Id: path(['Number'], item),
-                emptyslotcount: path(['Availabilities', 0, 'EmptySlotCount'], item),
-                bikes: setBikes(path(['Availabilities'], item)),
-            }),
+                id: +path(['name'], item),
+                description: path(['subTitle'], item).replace(/^\d* /, ''),
+                name: path(['title'], item).replace(/^.*?- /, ''),
+                latitude: path(['coord', 'lat'], item),
+                longitude: path(['coord', 'lng'], item),
+                active: path(['enabled'], item),
+                slotsnumber: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
+                emptyslotcount: path(['availabilityInfo', 'availableDocks'], item),
+                bikes: setBikes(path(['availabilityInfo', 'availableVehicleCategories'], item))
+            })
         )
     ),
-    path(['data', 'Result', 'Stations']),
+    path(['data', 'data', 'dockGroups']),
 );
 
 const sortByDistance = curry(({ latitude, longitude }) => compose(
@@ -107,19 +101,30 @@ class bicineabbiamo {
         const latitude = parseFloat(sortByDistanceFrom.latitude);
         const longitude = parseFloat(sortByDistanceFrom.longitude);
 
-        return axios.post('http://app.bikemi.com:8888/BikeMiService/api', {
-            Version: '2.0',
-            Action: 'GetStations',
-            Parameters: {
-                Culture: 'it-IT',
+        const extensions = JSON.stringify({
+            persistedQuery: {
+                version: 1,
+                sha256Hash:
+                    '7fa245496fabfeae8cc14d47b58518eb6561683f6eca05ac64a00850939f818f'
+            }
+        });
+
+        return axios({
+            url: 'https://core.urbansharing.com/public/api/v1/graphql',
+            params: {
+                extensions,
+                operationName: 'stationMapQuery'
             },
-            Hash: '8275DD31B51C959DFF7B8A66B336F454',
-        })
-            .then(compose(
-                when(always(''+onlyFirstResult === 'true'), head),
+            headers: {
+                systemid: 'milan-bikemi'
+            }
+        }).then(
+            compose(
+                when(always('' + onlyFirstResult === 'true'), head),
                 when(always(latitude > 0 && longitude > 0), sortByDistance({ latitude, longitude })),
-                when(always(''+onlyWithParking === 'true'), getOnlyWithParkingAvailable),
-                when(always(''+onlyAvailable === 'true'), getOnlyWithBikesAvailable),
+                sortBy(path(['id'])),
+                when(always('' + onlyWithParking === 'true'), getOnlyWithParkingAvailable),
+                when(always('' + onlyAvailable === 'true'), getOnlyWithBikesAvailable),
                 cleanData,
             ))
     }
