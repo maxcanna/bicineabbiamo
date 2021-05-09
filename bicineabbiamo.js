@@ -59,9 +59,9 @@ const cleanData = compose(
                 latitude: path(['coord', 'lat'], item),
                 longitude: path(['coord', 'lng'], item),
                 active: path(['enabled'], item),
-                bikesnumber: path(['availabilityInfo', 'availableVehicles'], item),
-                slotsnumber: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
-                emptyslotcount: path(['availabilityInfo', 'availableDocks'], item),
+                bikescount: path(['availabilityInfo', 'availableVehicles'], item),
+                slotscount: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
+                emptyslotscount: path(['availabilityInfo', 'availableDocks'], item),
                 bikes: setBikes(path(['availabilityInfo', 'availableVehicleCategories'], item))
             })
         )
@@ -80,16 +80,16 @@ const sortByDistance = curry(({ latitude, longitude }) => compose(
     )
 ));
 
-const getOnlyWithBikesAvailable = filter(path(['bikesnumber']));
+const getOnlyWithBikesAvailable = filter(path(['bikescount']));
 
-const getOnlyWithParkingAvailable = filter(path(['emptyslotcount']));
+const getOnlyWithParkingAvailable = filter(path(['emptyslotscount']));
 
 const getOnlyActive = filter(path(['active']));
 
 class bicineabbiamo {
     static getData({
         onlyActive = true,
-        onlyAvailable = false,
+        onlyWithBikes = false,
         onlyWithParking = false,
         sortByDistanceFrom = {},
         onlyFirstResult = false
@@ -120,7 +120,7 @@ class bicineabbiamo {
                 when(always(latitude > 0 && longitude > 0), sortByDistance({ latitude, longitude })),
                 sortBy(path(['id'])),
                 when(always('' + onlyWithParking === 'true'), getOnlyWithParkingAvailable),
-                when(always('' + onlyAvailable === 'true'), getOnlyWithBikesAvailable),
+                when(always('' + onlyWithBikes === 'true'), getOnlyWithBikesAvailable),
                 when(always('' + onlyActive === 'true'), getOnlyActive),
                 cleanData,
             ))
