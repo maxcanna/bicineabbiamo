@@ -60,7 +60,7 @@ const cleanData = compose(
                 longitude: path(['coord', 'lng'], item),
                 active: path(['enabled'], item),
                 bikescount: path(['availabilityInfo', 'availableVehicles'], item),
-                slotsnumber: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
+                slotscount: path(['availabilityInfo', 'availableDocks'], item) + path(['availabilityInfo', 'availableVehicles'], item),
                 emptyslotcount: path(['availabilityInfo', 'availableDocks'], item),
                 bikes: setBikes(path(['availabilityInfo', 'availableVehicleCategories'], item))
             })
