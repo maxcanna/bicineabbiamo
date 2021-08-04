@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.3.2] - 2021-08-04
+### Changed
+Bump `tar` from 4.4.4 to 4.4.15
+
 ## [5.3.1] - 2021-05-09
 ### Changed
 Bump `extend` from 3.0.1 to 3.0.2
