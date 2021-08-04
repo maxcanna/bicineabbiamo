@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [5.3.4] - 2021-08-04
 ### Changed
+Bump `minimist` from 1.2.0 to 1.2.5
+
+## [5.3.4] - 2021-08-04
+### Changed
 Bump `color-string` from 1.5.4 to 1.6.0
 
 ## [5.3.2] - 2021-08-04
