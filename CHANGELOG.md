@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [5.3.6] - 2021-09-01
+## [5.3.7] - 2021-10-02
 ### Changed
-- Fixed `CHANGELOG` formatting
+- Bump `axios` from 0.21.1 to 0.21.2.
+
+## [5.3.6] - 2021-10-02
+### Changed
+- Fix `CHANGELOG` formatting
 
 ## [5.3.5] - 2021-09-01
 ### Changed
