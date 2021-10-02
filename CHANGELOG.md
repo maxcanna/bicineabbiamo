@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.4.0] - 2021-10-02
+### Changed
+- Improve `id` computation to handle alphanumeric IDs in the original API
+
+
 ## [5.3.7] - 2021-10-02
 ### Changed
 - Bump `axios` from 0.21.1 to 0.21.2.
