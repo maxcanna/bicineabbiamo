@@ -2,25 +2,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.3.6] - 2021-09-01
+### Changed
+- Fixed `CHANGELOG` formatting
+
 ## [5.3.5] - 2021-09-01
 ### Changed
-Bump `tar` from 4.4.15 to 4.4.19
+- Bump `tar` from 4.4.15 to 4.4.19
 
 ## [5.3.4] - 2021-08-04
 ### Changed
-Bump `minimist` from 1.2.0 to 1.2.5
+- Bump `minimist` from 1.2.0 to 1.2.5
 
 ## [5.3.4] - 2021-08-04
 ### Changed
-Bump `color-string` from 1.5.4 to 1.6.0
+- Bump `color-string` from 1.5.4 to 1.6.0
 
 ## [5.3.2] - 2021-08-04
 ### Changed
-Bump `tar` from 4.4.4 to 4.4.15
+- Bump `tar` from 4.4.4 to 4.4.15
 
 ## [5.3.1] - 2021-05-09
 ### Changed
-Bump `extend` from 3.0.1 to 3.0.2
+- Bump `extend` from 3.0.1 to 3.0.2
 
 ## [5.3.0] - 2021-05-09
 ### Changed
