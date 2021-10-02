@@ -2,9 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.4.0] - 2021-10-02
+### Changed
+- Improve `id` computation to handle alphanumeric IDs in the original API
+
+
 ## [5.3.7] - 2021-10-02
 ### Changed
-- Bump `axios` from 0.21.1 to 0.21.2.
+- Bump `axios` from 0.21.1 to 0.21.2
 
 ## [5.3.6] - 2021-10-02
 ### Changed
@@ -71,7 +76,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [4.4.1] - 2021-05-08
 ### Changed
-Use info log level
+- Use info log level
 
 ## [4.4.0] - 2021-05-08
 ### Changed
@@ -84,32 +89,32 @@ Use info log level
 
 ## [4.3.0] - 2021-05-08
 ### Removed
-Remove contributing.json
-Remove deps
+- Remove `contributing.json`
+- Remove deps
 ### Changed
-Bump deps version
-Use specific node version
-Update node version
+- Bump deps version
+- Use specific `node` version
+- Update `node` version
 
 ## [4.2.6] - 2021-05-08
 ### Changed
-Split CI steps
+- Split CI steps
 
 ## [4.2.5] - 2021-05-08
 ### Removed
-Remove `eslint` dependency
+- Remove `eslint` dependency
 ### Changed
-Update `eslint` config
+- Update `eslint` config
 
 ## [4.2.4] - 2021-05-08
 ### Removed
-Remove `dredd` dependency
+- Remove `dredd` dependency
 ### Changed
-Avoid CI in master
+- Avoid CI in `master`
 
 ## [4.2.3] - 2021-03-02
 ### Added
-Automatically create a release
+- Automatically create a release
 
 ## [4.2.2] - 2021-01-19
 ### Changed
@@ -166,7 +171,7 @@ Automatically create a release
 ### Added
 - Favicon
 - Home screen support
-- theme color
+- Theme color
 - API blueprint
 - API test
 - Documentation
@@ -189,5 +194,5 @@ Automatically create a release
 - Cleaned and normalized data format
 
 ## [1.0.0] - 2016-07-01
-### Changed
-First working version. Just plain results from original API
+### Added
+- First working version. Just plain results from original API

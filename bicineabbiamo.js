@@ -53,7 +53,7 @@ const cleanData = compose(
     map(
         compose(
             item => ({
-                id: +path(['name'], item),
+                id: +(path(['name'], item).replace('V', '1000')),
                 description: path(['subTitle'], item).replace(/^\d* /, ''),
                 name: path(['title'], item).replace(/^.*?- /, ''),
                 latitude: path(['coord', 'lat'], item),
