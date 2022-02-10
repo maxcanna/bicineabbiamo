@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.4.1] - 2022-02-10
+### Changed
+- Bump `undefsafe` from 2.0.2 to 2.0.5
+
 ## [5.4.0] - 2021-10-02
 ### Changed
 - Improve `id` computation to handle alphanumeric IDs in the original API
