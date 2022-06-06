@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.4.3] - 2022-06-06
+### Changed
+- Bump `protobufjs` from 6.11.2 to 6.11.3
+
 ## [5.4.2] - 2022-04-12
 ### Changed
 - Bump `minimist` from 1.2.5 to 1.2.6
