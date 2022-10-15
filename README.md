@@ -7,10 +7,6 @@ Simple API to get BikeMi station informations. [Demo](https://bicineabbiamo.mass
 
 You've several way to get bicineabbiamo running:
 
-* You can easily create an Heroku application:
-
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 * You can use `docker`:
 
   `docker run -d -p 80:3000 maxcanna/bicineabbiamo:latest`.
