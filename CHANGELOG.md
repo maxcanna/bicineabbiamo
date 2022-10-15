@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [5.4.4] - 2022-06-06
+## [5.4.4] - 2022-10-15
 ### Added
 - Push docker image on merge
 
