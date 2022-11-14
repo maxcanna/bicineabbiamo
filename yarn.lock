@@ -317,12 +317,6 @@ axios@^0.21.2:
   dependencies:
     follow-redirects "^1.14.0"
 
-backoff@~2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/backoff/-/backoff-2.5.0.tgz#f616eda9d3e4b66b8ca7fca79f695722c5f8e26f"
-  dependencies:
-    precond "0.2"
-
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -491,13 +485,6 @@ cli-boxes@^1.0.0:
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
-
-codependency@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/codependency/-/codependency-2.1.0.tgz#597d01ccc6b2704ab8d7a12af5d27ac9b4e27e8a"
-  integrity sha512-JIdmYkE8Z6jwH1OUf4a5H5jk9YShPQkaYPUAiN+ktyChmPP77LGbeKrxWGPqdCnpTmt0hRIn8TXBVu01U3HDhg==
-  dependencies:
-    semver "^5.3.0"
 
 collection-visit@^1.0.0:
   version "1.0.0"
@@ -1423,7 +1410,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-json-stringify-safe@^5.0.0, json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.0:
+json-stringify-safe@^5.0.0, json-stringify-safe@~5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -1490,11 +1477,6 @@ lodash.debounce@^4.0.8:
 lodash.isstring@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
-
-lodash@^4.17.15:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 logform@^2.2.0:
   version "2.2.0"
@@ -1950,10 +1932,6 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
 
-precond@0.2:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/precond/-/precond-0.2.3.tgz#aa9591bcaa24923f1e0f4849d240f47efc1075ac"
-
 prepend-http@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
@@ -2017,16 +1995,6 @@ qs@6.7.0:
 qs@^6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-
-r7insight_node@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/r7insight_node/-/r7insight_node-2.1.0.tgz#620ed3fe843d825aaf3107df7be4856bc444b8e1"
-  integrity sha512-214McksFUVd5QAO1zSaVm0ryA5WoCO0TIxIpydCcNVBm6SrAKOFTA/w2Ry12bVajOLz85hTHAVhHi60hCb39pA==
-  dependencies:
-    codependency "^2.1.0"
-    json-stringify-safe "^5.0.1"
-    lodash "^4.17.15"
-    reconnect-core "^1.3.0"
 
 ramda@^0.25.0:
   version "0.25.0"
@@ -2108,13 +2076,6 @@ readdirp@^2.0.0:
     minimatch "^3.0.2"
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
-
-reconnect-core@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/reconnect-core/-/reconnect-core-1.3.0.tgz#fbae52919a7877d844e3246d01a2f26701c833c8"
-  integrity sha1-+65SkZp4d9hE4yRtAaLyZwHIM8g=
-  dependencies:
-    backoff "~2.5.0"
 
 regex-not@^1.0.0, regex-not@^1.0.2:
   version "1.0.2"
