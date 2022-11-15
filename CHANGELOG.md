@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.5.0] - 2022-11-14
+### Removed
+- logentries logging
+
 ## [5.4.6] - 2022-10-15
 ### Removed
 - References to heroku
