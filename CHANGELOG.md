@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.5.1] - 2022-11-15
+### Changed
+- Bump `minimatch` from 3.0.4 to 3.1.2
+
 ## [5.5.0] - 2022-11-14
 ### Removed
 - logentries logging
