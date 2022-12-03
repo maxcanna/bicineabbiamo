@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.5.2] - 2022-12-03
+### Changed 
+- Bump `decode-uri-component` from 0.2.0 to 0.2.2
+
 ## [5.5.1] - 2022-11-15
 ### Changed
 - Bump `minimatch` from 3.0.4 to 3.1.2
