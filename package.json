@@ -33,7 +33,7 @@
     "actions-on-google": "^2.2.0",
     "axios": "^0.21.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "gps-distance": "0.0.4",
     "localizify": "^1.2.4",
     "morgan": "^1.10.0",
