@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.5.3] - 2022-12-12
+### Changed 
+- Bump `express` from 4.17.1 to 4.17.3
+
 ## [5.5.2] - 2022-12-03
 ### Changed 
 - Bump `decode-uri-component` from 0.2.0 to 0.2.2
