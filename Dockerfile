@@ -1,11 +1,11 @@
-FROM node:14.16.1-alpine as builder
+FROM node:16.16.0-alpine as builder
 RUN apk update
 RUN apk add git
 ADD ./ /var/www/bicineabbiamo/
 WORKDIR /var/www/bicineabbiamo
 RUN yarn --production --ignore-engines
 
-FROM node:14.16.1-alpine
+FROM node:16.16.0-alpine
 LABEL maintainer Massimiliano Cannarozzo <massi@massi.dev>
 WORKDIR /var/www/bicineabbiamo
 COPY --from=builder /var/www/bicineabbiamo .
