@@ -202,7 +202,7 @@ app.middleware(conv => {
 
     localizify.setLocale(localizify.detectLocale(languageCode));
 
-    logger.info(conv);
+    logger.info("Handling conversation", conv);
 
     return conv;
 });
