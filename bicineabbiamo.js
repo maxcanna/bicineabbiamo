@@ -101,7 +101,7 @@ class bicineabbiamo {
             persistedQuery: {
                 version: 1,
                 sha256Hash:
-                    '7fa245496fabfeae8cc14d47b58518eb6561683f6eca05ac64a00850939f818f'
+                    '5227472abbe6028dedd30341e94363da729bebc4f4ee366ffade3e39e01efd10'
             }
         });
 
