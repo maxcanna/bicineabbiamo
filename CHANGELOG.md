@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.7.0] - 2023-02-24
+### Changed
+- Update API URL
+
 ## [5.6.0] - 2023-01-29
 ### Changed
 - Improve conversation object logging
