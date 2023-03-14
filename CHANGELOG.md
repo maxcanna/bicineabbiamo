@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.7.1] - 2023-03-14
+### Changed
+- Use official buildx action
+
 ## [5.7.0] - 2023-02-24
 ### Changed
 - Update API URL
