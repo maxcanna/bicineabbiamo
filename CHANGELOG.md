@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.7.4] - 2023-07-06
+### Changed
+- Bump @grpc/grpc-js from 1.3.0 to 1.8.17
+
 ## [5.7.3] - 2023-03-14
 ### Changed
 - Use latest checkout action
