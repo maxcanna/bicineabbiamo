@@ -4,7 +4,7 @@
     "yarn": "^1.22.19"
   },
   "name": "bicineabbiamo",
-  "version": "5.7.5",
+  "version": "5.8.0",
   "description": "API to get BikeMi stations info",
   "private": true,
   "main": "bicineabbiamo.js",
@@ -30,7 +30,6 @@
   "homepage": "https://github.com/maxcanna/bicineabbiamo#readme",
   "dependencies": {
     "@google/maps": "^0.5.5",
-    "actions-on-google": "^2.2.0",
     "axios": "^0.21.2",
     "compression": "^1.7.4",
     "express": "^4.17.3",
