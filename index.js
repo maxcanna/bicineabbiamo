@@ -4,7 +4,7 @@ const api = require('./routes_api');
 const logger = require('./logger');
 const Rollbar = require('rollbar');
 const morgan = require('morgan');
-const { env: { PORT: port = 3000, ROLLBAR_KEY, NODE_ENV } } = process;
+const { env: { PORT: port = 3000, ROLLBAR_KEY, NODE_ENV } } = process;
 const environment = NODE_ENV || 'production';
 const development = environment === 'development';
 const rollbar = new Rollbar({
