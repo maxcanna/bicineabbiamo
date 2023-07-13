@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.0] - 2023-07-13
+### Removed
+- Google Assistant support
+
 ## [5.7.5] - 2023-07-11
 ### Changed
 - Bump `semver` from 5.4.1 to 5.7.2
@@ -73,7 +77,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.4.0] - 2021-10-02
 ### Changed
 - Improve `id` computation to handle alphanumeric IDs in the original API
-
 
 ## [5.3.7] - 2021-10-02
 ### Changed
