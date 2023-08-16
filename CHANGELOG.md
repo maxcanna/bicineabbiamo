@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.1] - 2023-08-16
+### Changed
+- Bump `protobufjs` from 6.11.3 to 6.11.4
+
 ## [5.8.0] - 2023-07-13
 ### Removed
 - Google Assistant support
