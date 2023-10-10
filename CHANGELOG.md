@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.3] - 2023-10-10
+### Changed
+- Bump `fsevents` from 1.2.4 to 1.2.13
+
 ## [5.8.2] - 2023-08-16
 ### Changed
 - Bump `follow-redirects` from 1.14.4 to 1.15.2
