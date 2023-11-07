@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.4] - 2023-11-07
+### Changed
+- Checkout the whole repo
+
 ## [5.8.3] - 2023-10-10
 ### Changed
 - Bump `fsevents` from 1.2.4 to 1.2.13
