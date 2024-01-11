@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.6] - 2024-01-11
+### Changed
+Bump `follow-redirects` from 1.15.3 to 1.15.4
+
 ## [5.8.5] - 2023-11-20
 ### Changed
 Bump `axios` from 0.21.2 to 1.6.0
