@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.8] - 2024-03-28
+### Changed
+Bumps express from 4.17.3 to 4.19.2
+
 ## [5.8.7] - 2024-03-18
 ### Changed
 Bump `follow-redirects` from 1.15.4 to 1.15.6
