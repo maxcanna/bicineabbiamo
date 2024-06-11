@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.8.9] - 2024-06-11
+### Changed
+Bumps `@grpc/grpc-js` from 1.8.17 to 1.8.22
+
 ## [5.8.8] - 2024-03-28
 ### Changed
-Bumps express from 4.17.3 to 4.19.2
+Bumps `express` from 4.17.3 to 4.19.2
 
 ## [5.8.7] - 2024-03-18
 ### Changed
