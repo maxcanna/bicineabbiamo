@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [5.8.10] - 2024-08-27
 ### Changed
+Bump `axios` from 1.6.0 to 1.7.4
+
+## [5.8.10] - 2024-08-27
+### Changed
 Add `linux/arm64` build
 
 ## [5.8.9] - 2024-06-11
