@@ -2,33 +2,37 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [5.8.10] - 2024-08-27
+## [5.8.12] - 2024-09-23
 ### Changed
-Bump `axios` from 1.6.0 to 1.7.4
+- Bump `express` from 4.19.2 to 4.20.0
+
+## [5.8.11] - 2024-08-27
+### Changed
+- Bump `axios` from 1.6.0 to 1.7.4
 
 ## [5.8.10] - 2024-08-27
-### Changed
-Add `linux/arm64` build
+### Added
+- Add `linux/arm64` build
 
 ## [5.8.9] - 2024-06-11
 ### Changed
-Bump `@grpc/grpc-js` from 1.8.17 to 1.8.22
+- Bump `@grpc/grpc-js` from 1.8.17 to 1.8.22
 
 ## [5.8.8] - 2024-03-28
 ### Changed
-Bump `express` from 4.17.3 to 4.19.2
+- Bump `express` from 4.17.3 to 4.19.2
 
 ## [5.8.7] - 2024-03-18
 ### Changed
-Bump `follow-redirects` from 1.15.4 to 1.15.6
+- Bump `follow-redirects` from 1.15.4 to 1.15.6
 
 ## [5.8.6] - 2024-01-11
 ### Changed
-Bump `follow-redirects` from 1.15.3 to 1.15.4
+- Bump `follow-redirects` from 1.15.3 to 1.15.4
 
 ## [5.8.5] - 2023-11-20
 ### Changed
-Bump `axios` from 0.21.2 to 1.6.0
+- Bump `axios` from 0.21.2 to 1.6.0
 
 ## [5.8.4] - 2023-11-07
 ### Changed
@@ -304,7 +308,6 @@ Bump `axios` from 0.21.2 to 1.6.0
 ### Added
 - `onlyAvailable` filter
 - `lat`/`lon` sorting
-
 ### Changed
 - Cleaned and normalized data format
 
