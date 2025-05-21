@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.0] - 2025-05-21
+### Changed
+- Updated `axios`, `express`, `newrelic`, `nodemon`, `rollbar`, and `winston`.
+- Added a Yarn resolution for a transitive `axios` dependency under `@newrelic/security-agent`.
+- Updated Node.js engine requirement in `package.json` to `^18.19.1`.
+- Modified `Dockerfile` to use `node:18.19.1-alpine`.
+
 ## [5.8.12] - 2024-09-23
 ### Changed
 - Bump `express` from 4.19.2 to 4.20.0

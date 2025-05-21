@@ -39,7 +39,7 @@ jobs:
     - name: Setup node
       uses: actions/setup-node@v1
       with:
-        node-version: 16.16.0
+        node-version: 18.19.1
     - name: Install yarn
       run: npm install --global yarn@1.22.19
     - name: Install dependencies
