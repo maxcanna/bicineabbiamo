@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.1] - 2025-06-03
+### Changed
+Bumps `tar-fs` from 2.1.2 to 2.1.3.
+
 ## [5.9.0] - 2025-05-21
 ### Changed
 - Updated `axios`, `express`, `newrelic`, `nodemon`, `rollbar`, and `winston`.
