@@ -19,10 +19,9 @@ jobs:
     - name: Docker login
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
     - name: Docker build
-      run: |
-        docker buildx build \
-          --platform linux/amd64,linux/arm64,linux/arm/v7 \
-          --output "type=image,push=$DOCKER_PUSH" \
-          --label "version=$VERSION_NUMBER" \
-          --tag maxcanna/bicineabbiamo:latest \
-          --file ./Dockerfile .
+      uses: docker/build-push-action@v6
+      with:
+        tags: maxcanna/bicineabbiamo:latest,maxcanna/bicineabbiamo:${{ env.VERSION_NUMBER }}
+        labels: version=$VERSION_NUMBER
+        push: ${{ env.DOCKER_PUSH }}
+        platforms: linux/amd64,linux/arm64,linux/arm/v7
