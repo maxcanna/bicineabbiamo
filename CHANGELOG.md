@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.2] - 2025-06-05
+### Changed
+Use docker/build-push-action
+
 ## [5.9.1] - 2025-06-03
 ### Changed
 Bumps `tar-fs` from 2.1.2 to 2.1.3.
