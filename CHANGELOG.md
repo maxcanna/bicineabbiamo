@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.4] - 2025-06-06
+### Changed
+Use docker/login-action
+
 ## [5.9.3] - 2025-06-06
 ### Removed
 Removed multi stage build
