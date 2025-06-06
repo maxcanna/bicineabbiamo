@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.3] - 2025-06-06
+### Removed
+Removed multi stage build
+
 ## [5.9.2] - 2025-06-05
 ### Changed
 Use docker/build-push-action
