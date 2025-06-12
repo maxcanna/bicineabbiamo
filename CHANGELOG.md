@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.5] - 2025-06-12
+### Changed
+Bump `brace-expansion` from 1.1.11 to 1.1.12
+
 ## [5.9.4] - 2025-06-06
 ### Changed
-Use docker/login-action
+Use `docker/login-action`
 
 ## [5.9.3] - 2025-06-06
 ### Removed
@@ -12,7 +16,7 @@ Removed multi stage build
 
 ## [5.9.2] - 2025-06-05
 ### Changed
-Use docker/build-push-action
+Use `docker/build-push-action`
 
 ## [5.9.1] - 2025-06-03
 ### Changed
