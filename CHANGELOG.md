@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.6] - 2025-09-02
+### Changed
+- Bump `on-headers` to 1.1.0
+- Bump `form-data` to 4.0.4
+
 ## [5.9.5] - 2025-06-12
 ### Changed
 Bump `brace-expansion` from 1.1.11 to 1.1.12
