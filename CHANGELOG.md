@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.7] - 2025-09-14
+### Changed
+Bump `axios` from 1.9.0 to 1.12.0
+
 ## [5.9.6] - 2025-09-02
 ### Changed
 - Bump `on-headers` to 1.1.0
