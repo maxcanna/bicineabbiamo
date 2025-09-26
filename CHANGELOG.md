@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.9.8] - 2025-09-26
+### Changed
+- Bump `morgan` from 1.10.0 to 1.11.0
+
 ## [5.9.7] - 2025-09-14
 ### Changed
 Bump `axios` from 1.9.0 to 1.12.0
