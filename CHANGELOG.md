@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.0] - 2025-10-20
+### Changed
+- Bump `rollbar` from 2.26.4 to 2.26.5
+
 ## [5.9.8] - 2025-09-26
 ### Changed
 - Bump `morgan` from 1.10.0 to 1.11.0
