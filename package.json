@@ -38,7 +38,7 @@
     "morgan": "^1.10.0",
     "newrelic": "^11.16.0",
     "ramda": "^0.25.0",
-    "rollbar": "^2.26.4",
+    "rollbar": "^2.26.5",
     "winston": "^3.17.0",
     "winston-transport": "^4.4.0"
   },
