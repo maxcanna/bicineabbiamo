@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.1] - 2025-11-19
+### Changed
+- Bump `glob` from 10.4.5 to 10.5.0
+
 ## [5.10.0] - 2025-10-20
 ### Changed
 - Bump `rollbar` from 2.26.4 to 2.26.5
