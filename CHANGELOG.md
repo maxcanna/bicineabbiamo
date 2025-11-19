@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.2] - 2025-11-19
+### Changed
+Bump `js-yaml` from 4.1.0 to 4.1.1
+
 ## [5.10.1] - 2025-11-19
 ### Changed
 - Bump `glob` from 10.4.5 to 10.5.0
