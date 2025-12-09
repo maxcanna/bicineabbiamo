@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.3] - 2025-12-09
+### Changed
+- Use Node.js 22
+
 ## [5.10.2] - 2025-11-19
 ### Changed
 Bump `js-yaml` from 4.1.0 to 4.1.1
