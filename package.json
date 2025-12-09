@@ -1,7 +1,7 @@
 {
   "engines": {
     "node": "^22.0.0",
-    "yarn": "^1.22.19"
+    "yarn": "1.22.22"
   },
   "name": "bicineabbiamo",
   "version": "5.10.3",
