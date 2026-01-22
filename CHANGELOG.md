@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.5] - 2026-01-22
+### Changed
+- Bump `lodash` from 4.17.21 to 4.17.23
+
 ## [5.10.4] - 2025-12-09
 ### Changed
 - Bump `yarn` from 1.22.19 to 1.22.22
