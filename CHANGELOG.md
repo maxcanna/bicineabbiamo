@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.6] - 2026-02-03
+### Added
+- Add armv6 build
+
 ## [5.10.5] - 2026-01-22
 ### Changed
 - Bump `lodash` from 4.17.21 to 4.17.23
@@ -16,7 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [5.10.2] - 2025-11-19
 ### Changed
-Bump `js-yaml` from 4.1.0 to 4.1.1
+- Bump `js-yaml` from 4.1.0 to 4.1.1
 
 ## [5.10.1] - 2025-11-19
 ### Changed
@@ -41,23 +45,23 @@ Bump `axios` from 1.9.0 to 1.12.0
 
 ## [5.9.5] - 2025-06-12
 ### Changed
-Bump `brace-expansion` from 1.1.11 to 1.1.12
+- Bump `brace-expansion` from 1.1.11 to 1.1.12
 
 ## [5.9.4] - 2025-06-06
 ### Changed
-Use `docker/login-action`
+- Use `docker/login-action`
 
 ## [5.9.3] - 2025-06-06
 ### Removed
-Removed multi stage build
+- Removed multi stage build
 
 ## [5.9.2] - 2025-06-05
 ### Changed
-Use `docker/build-push-action`
+- Use `docker/build-push-action`
 
 ## [5.9.1] - 2025-06-03
 ### Changed
-Bumps `tar-fs` from 2.1.2 to 2.1.3.
+- Bump `tar-fs` from 2.1.2 to 2.1.3.
 
 ## [5.9.0] - 2025-05-21
 ### Changed
