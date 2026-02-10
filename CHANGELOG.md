@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.8] - 2026-02-10
+### Changed
+- Bump `axios` from 1.12.0 to 1.13.5
+
 ## [5.10.7] - 2026-02-10
 ### Changed
 - Upgrade `newrelic` to v13 to remove dependency on vulnerable `tar` package
