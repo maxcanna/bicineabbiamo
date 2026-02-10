@@ -36,7 +36,7 @@
     "gps-distance": "0.0.4",
     "localizify": "^1.2.4",
     "morgan": "^1.10.0",
-    "newrelic": "^11.16.0",
+    "newrelic": "^13.0.0",
     "ramda": "^0.25.0",
     "rollbar": "^2.26.5",
     "winston": "^3.17.0",
@@ -48,6 +48,7 @@
   "resolutions": {
     "**/@newrelic/security-agent/axios": "^1.8.2",
     "on-headers": "~1.1.0",
-    "form-data": "~4.0.4"
+    "form-data": "~4.0.4",
+    "qs": "6.14.1"
   }
 }
