@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.7] - 2026-02-10
+### Changed
+- Upgrade `newrelic` to v13 to remove dependency on vulnerable `tar` package
+- Force `qs` to v6.14.1 via resolutions field to fix vulnerability
+
 ## [5.10.6] - 2026-02-03
 ### Added
 - Add armv6 build
