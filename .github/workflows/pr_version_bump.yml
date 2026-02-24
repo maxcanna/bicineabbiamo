@@ -2,7 +2,7 @@ name: PR Version & Changelog Update
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened]
 
 permissions:
   contents: write
@@ -43,7 +43,6 @@ jobs:
             echo "Generating changelog entry for version $NEW_VERSION..."
 
             # Create new entry content
-            # Changed: Removed the initial newline echo.
             echo "## [$NEW_VERSION] - $DATE" > new_entry.md
             echo "### Changed" >> new_entry.md
             echo "$COMMITS" >> new_entry.md
