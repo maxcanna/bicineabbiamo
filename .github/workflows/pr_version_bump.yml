@@ -1,0 +1,70 @@
+name: PR Version & Changelog Update
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  bump-version-and-update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Bump version and update changelog if unchanged
+        run: |
+          # Fetch the base branch to compare against
+          git fetch origin ${{ github.base_ref }}
+
+          # Check if "version" line in package.json has changed compared to the base branch
+          if ! git diff --diff-filter=M origin/${{ github.base_ref }} -- "package.json" | grep "version"; then
+            echo "Version has not been changed. Bumping version..."
+
+            # Configure git user using the last non-merge commit's author
+            git config user.name "$(git log -1 --no-merges --pretty=format:'%an')"
+            git config user.email "$(git log -1 --no-merges --pretty=format:'%ae')"
+
+            # Bump patch version using yarn without creating a git tag
+            yarn version --patch --no-git-tag-version
+
+            # Get new version and date
+            NEW_VERSION=$(node -p "require('./package.json').version")
+            DATE=$(date +%Y-%m-%d)
+
+            # Get commits since base branch, format as "- Message"
+            COMMITS=$(git log --no-merges --pretty=format:"- %s" origin/${{ github.base_ref }}..HEAD)
+
+            echo "Generating changelog entry for version $NEW_VERSION..."
+
+            # Create new entry content
+            # ensure we start with a newline if needed, but here we construct the block
+            echo "" > new_entry.md
+            echo "## [$NEW_VERSION] - $DATE" >> new_entry.md
+            echo "### Changed" >> new_entry.md
+            echo "$COMMITS" >> new_entry.md
+            echo "" >> new_entry.md
+
+            # Insert into CHANGELOG.md
+            # We assume standard format: Header is first 4 lines (including blank line)
+            head -n 4 CHANGELOG.md > temp_changelog.md
+            cat new_entry.md >> temp_changelog.md
+            tail -n +5 CHANGELOG.md >> temp_changelog.md
+
+            mv temp_changelog.md CHANGELOG.md
+            rm new_entry.md
+
+            # Commit the change
+            git add package.json CHANGELOG.md
+            git commit -m "Version bump to $NEW_VERSION and changelog update"
+
+            # Push changes back to the PR branch
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            echo "Version has already been changed. Skipping bump."
+          fi
