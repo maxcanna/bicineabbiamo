@@ -2,11 +2,6 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-
-## [5.10.9] - 2026-02-24
-### Changed
-- Add PR Version & Changelog Update workflow
-
 ## [5.10.8] - 2026-02-10
 ### Changed
 - Bump `axios` from 1.12.0 to 1.13.5

@@ -43,9 +43,8 @@ jobs:
             echo "Generating changelog entry for version $NEW_VERSION..."
 
             # Create new entry content
-            # ensure we start with a newline if needed, but here we construct the block
-            echo "" > new_entry.md
-            echo "## [$NEW_VERSION] - $DATE" >> new_entry.md
+            # Changed: Removed the initial newline echo.
+            echo "## [$NEW_VERSION] - $DATE" > new_entry.md
             echo "### Changed" >> new_entry.md
             echo "$COMMITS" >> new_entry.md
             echo "" >> new_entry.md
