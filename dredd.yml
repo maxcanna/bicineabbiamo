@@ -1,6 +1,6 @@
 reporter: apiary
 language: nodejs
-server: node index.js
+server: node -r ./.pnp.cjs index.js
 server-wait: 3
 inline-errors: false
 details: false

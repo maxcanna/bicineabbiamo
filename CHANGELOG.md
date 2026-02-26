@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.10] - 2026-02-26
+### Changed
+- Migrate to Yarn 4 with PnP
+- Removed `test.sh` and moved its logic to `ci.yml`
+
 ## [5.10.9] - 2026-02-24
 ### Changed
 - Add PR Version & Changelog Update workflow

@@ -37,18 +37,22 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
     - name: Setup node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: 22
-    - name: Install yarn
-      run: npm install --global yarn@1.22.22
+    - name: Enable Corepack
+      run: corepack enable
     - name: Install dependencies
-      run: yarn
+      run: yarn install --immutable
     - name: Lint
-      run: npx eslint@^5.1.0 .
+      run: yarn dlx eslint@^5.1.0 .
     - name: Run tests
       env:
         APIARY_API_KEY: ${{ secrets.APIARY_API_KEY }}
         APIARY_API_NAME: ${{ secrets.APIARY_API_NAME }}
         CI: GITHUB_ACTIONS
-      run: ./test.sh
+        NEW_RELIC_NO_CONFIG_FILE: true
+        NEW_RELIC_ENABLED: false
+        NEW_RELIC_LOG: /dev/null
+        ROLLBAR_KEY: ${{ secrets.ROLLBAR_KEY }}
+      run: yarn dlx dredd@^5.1.11
