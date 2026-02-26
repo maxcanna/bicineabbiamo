@@ -19,6 +19,8 @@ jobs:
 
       - name: Bump version and update changelog if unchanged
         run: |
+          corepack enable
+
           # Fetch the base branch to compare against
           git fetch origin ${{ github.base_ref }}
 
@@ -31,7 +33,7 @@ jobs:
             git config user.email "$(git log -1 --no-merges --pretty=format:'%ae')"
 
             # Bump patch version using yarn without creating a git tag
-            yarn version --patch --no-git-tag-version
+            yarn version patch
 
             # Get new version and date
             NEW_VERSION=$(node -p "require('./package.json').version")

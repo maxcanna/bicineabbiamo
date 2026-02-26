@@ -5,6 +5,6 @@ WORKDIR /var/www/bicineabbiamo
 ENV NODE_ENV=production
 HEALTHCHECK CMD wget -q -O /dev/stdout localhost:3000/api?onlyFirstResult=true | grep bikescount
 EXPOSE 3000
-RUN npm install -g yarn@1.22.22 --force
-RUN yarn
-CMD ["node", "index.js"]
+RUN corepack enable
+RUN yarn install
+CMD ["node", "-r", "./.pnp.cjs", "index.js"]
