@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.11] - 2026-03-06
+### Changed
+- Bump tar from 7.5.9 to 7.5.10
+
 ## [5.10.10] - 2026-02-26
 ### Changed
 - Migrate to Yarn 4 with PnP
