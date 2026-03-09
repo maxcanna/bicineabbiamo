@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.10.13] - 2026-03-09
+### Changed
+- Conditionalize Docker platforms in workflow
+
 ## [5.10.12] - 2026-03-09
 ### Changed
 - Update Docker workflow to use GitHub Container Registry
