@@ -4,7 +4,7 @@
     "yarn": "^4.0.0"
   },
   "name": "bicineabbiamo",
-  "version": "5.10.11",
+  "version": "5.10.12",
   "description": "API to get BikeMi stations info",
   "private": true,
   "main": "bicineabbiamo.js",
