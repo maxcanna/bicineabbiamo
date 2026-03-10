@@ -12,31 +12,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Bump version and update changelog if unchanged
         run: |
-          corepack enable
-
           # Fetch the base branch to compare against
           git fetch origin ${{ github.base_ref }}
 
-          # Check if "version" line in package.json has changed compared to the base branch
-          if ! git diff --diff-filter=M origin/${{ github.base_ref }} -- "package.json" | grep "version"; then
+          # Check if VERSION file has changed compared to the base branch
+          if ! git diff --name-only origin/${{ github.base_ref }} | grep VERSION; then
             echo "Version has not been changed. Bumping version..."
 
             # Configure git user using the last non-merge commit's author
             git config user.name "$(git log -1 --no-merges --pretty=format:'%an')"
             git config user.email "$(git log -1 --no-merges --pretty=format:'%ae')"
 
-            # Bump patch version using yarn without creating a git tag
-            yarn version patch
+            # Bump patch version in VERSION file
+            OLD_VERSION=$(cat VERSION)
+            IFS='.' read -ra ADDR <<< "$OLD_VERSION"
+            NEW_PATCH=$((ADDR[2] + 1))
+            NEW_VERSION="${ADDR[0]}.${ADDR[1]}.$NEW_PATCH"
+            echo "$NEW_VERSION" > VERSION
 
-            # Get new version and date
-            NEW_VERSION=$(node -p "require('./package.json').version")
             DATE=$(date +%Y-%m-%d)
 
             # Get commits since base branch, format as "- Message"
@@ -60,7 +60,7 @@ jobs:
             rm new_entry.md
 
             # Commit the change
-            git add package.json CHANGELOG.md
+            git add VERSION CHANGELOG.md
             git commit -m "Version bump to $NEW_VERSION and changelog update"
 
             # Push changes back to the PR branch

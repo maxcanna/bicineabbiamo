@@ -10,23 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Check if there are fixup commits
       run: git log --pretty=format:%s origin/master.. | xargs | grep -v fixup
   version:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Check version bump
-        run: git diff --diff-filter=M origin/master -- "package.json" | grep "version"
+        run: git diff --name-only origin/master | grep VERSION
   changelog:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Check changelog update
@@ -35,24 +36,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v3
-    - name: Setup node
-      uses: actions/setup-node@v4
+      uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
       with:
-        node-version: 22
-    - name: Enable Corepack
-      run: corepack enable
-    - name: Install dependencies
-      run: yarn install --immutable
-    - name: Lint
-      run: yarn dlx eslint@^5.1.0 .
-    - name: Run tests
-      env:
-        APIARY_API_KEY: ${{ secrets.APIARY_API_KEY }}
-        APIARY_API_NAME: ${{ secrets.APIARY_API_NAME }}
-        CI: GITHUB_ACTIONS
-        NEW_RELIC_NO_CONFIG_FILE: true
-        NEW_RELIC_ENABLED: false
-        NEW_RELIC_LOG: /dev/null
-        ROLLBAR_KEY: ${{ secrets.ROLLBAR_KEY }}
-      run: yarn dlx dredd@^5.1.11
+        go-version: '1.26'
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v9
+      with:
+        version: latest
+    - name: Run Gosec Security Scanner
+      uses: securego/gosec@master
+      with:
+        args: ./...
+    - name: Run go test
+      run: go test -v ./...

@@ -13,9 +13,7 @@ You've several way to get bicineabbiamo running:
 
 * Or manually:
 
-  * `npm i --production`
-
-  * `npm start`
+  * `go run ./cmd/server`
 
   bicineabbiamo will be available on port `3000`.
 
